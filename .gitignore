@@ -1,3 +1,5 @@
+target/
+**/target/
 .freebuff/
 .DS_Store
 Thumbs.db

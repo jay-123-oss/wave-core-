@@ -1,0 +1,39 @@
+[package]
+name = "wave-core-api"
+version = "0.1.0"
+edition = "2021"
+authors = ["Wave Core Robotics Team <dev@wavecore.ai>"]
+description = "Public architecture, trait definitions, and 48-beam spherical coordinate types for the Wave-Core deterministic robotics safety arbiter"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["robotics", "autopilot", "safety", "no_std", "hil"]
+categories = ["embedded", "aerospace", "hardware-support"]
+
+[lib]
+name = "wave_core_api"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[workspace]
+
+[features]
+default = ["std"]
+std = []
+no_std = []
+
+[dependencies]
+libm = { version = "0.2.16", default-features = false }
+
+[[example]]
+name = "harness_runner"
+path = "examples/harness_runner.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.bench]
+opt-level = 3
+lto = true
+codegen-units = 1

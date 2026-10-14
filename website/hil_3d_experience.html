@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wave-Core Avionics // AAA 3D Real-World Flight Simulator [HIL Mission 1]</title>
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #050811;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f1f5f9;
+    }
+    #viewport-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =======================================================================
+       AAA AEROSPACE DIGITAL HUD OVERLAYS
+       ======================================================================= */
+    .hud-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+    }
+
+    .interactive {
+      pointer-events: auto;
+    }
+
+    /* Top Navigation & Status Bar */
+    .hud-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .hud-card {
+      background: rgba(11, 17, 28, 0.82);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #00f0ff;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-sub {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    /* Top Right Telemetry Badge */
+    .telemetry-card {
+      min-width: 320px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .tel-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      color: #cbd5e1;
+    }
+    .tel-val {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .tel-val.accent-cyan { color: #00f0ff; }
+    .tel-val.accent-emerald { color: #10b981; }
+    .tel-val.accent-amber { color: #f59e0b; }
+    .tel-val.accent-rose { color: #f43f5e; }
+
+    /* Camera Switcher Pill Bar */
+    .cam-bar {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      background: rgba(11, 17, 28, 0.88);
+      backdrop-filter: blur(16px);
+      padding: 6px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+    .cam-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cam-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .cam-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.5);
+    }
+
+    /* Mission Selector Buttons */
+    .mission-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .mission-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.70rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mission-btn:hover {
+      color: #ffffff;
+      background: rgba(0, 240, 255, 0.15);
+      border-color: #00f0ff;
+    }
+    .mission-btn.active {
+      background: rgba(0, 240, 255, 0.22);
+      border-color: #00f0ff;
+      color: #00f0ff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+    }
+
+    /* Bottom Control Dock */
+    .hud-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .bottom-cards-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    /* Bottom Left Flight Phase Badge */
+    .flight-phase-card {
+      min-width: 280px;
+    }
+    .phase-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+    .phase-cruise {
+      background: rgba(2, 132, 199, 0.2);
+      border: 1px solid #0284c7;
+      color: #38bdf8;
+    }
+    .phase-vault {
+      background: rgba(244, 63, 94, 0.2);
+      border: 1px solid #f43f5e;
+      color: #fda4af;
+      animation: alertGlow 1s infinite alternate;
+    }
+    @keyframes alertGlow {
+      from { box-shadow: 0 0 4px #f43f5e; }
+      to { box-shadow: 0 0 16px #f43f5e; }
+    }
+
+    /* Main Transport Bar */
+    .transport-dock {
+      background: rgba(11, 17, 28, 0.90);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      max-width: 860px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #00f0ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .ctrl-btn:hover {
+      background: #0284c7;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .timeline-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .timeline-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.70rem;
+      color: #94a3b8;
+    }
+    .timeline-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #334155;
+      outline: none;
+      cursor: pointer;
+    }
+    .timeline-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00f0ff;
+      box-shadow: 0 0 10px #00f0ff;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .timeline-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+
+    /* Speed Buttons */
+    .speed-group {
+      display: flex;
+      gap: 4px;
+      background: #0f172a;
+      padding: 3px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+    }
+    .speed-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.70rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .speed-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* Instructions Floating Tag */
+    .help-hint {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      background: rgba(11, 17, 28, 0.6);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 3D WebGL Viewport Container -->
+  <div id="viewport-container"></div>
+
+  <!-- HUD Instrumentation Overlay Layer -->
+  <div class="hud-layer">
+    <!-- Top Header & Live Telemetry -->
+    <div class="hud-header">
+      <div class="hud-card interactive">
+        <div class="brand-title">
+          <span>⚡</span> WAVE-CORE AVIONICS // 3D HIL LAB
+        </div>
+        <div class="brand-sub" id="missionSubTitle">
+          MISSION 1: HIGH-SPEED WALL ABORT // PX4 SITL + GAZEBO HARMONIC
+        </div>
+        <div class="mission-bar">
+          <button class="mission-btn active" id="btnMission1" onclick="switchMission(1)">M1: BLAST WALL</button>
+          <button class="mission-btn" id="btnMission2" onclick="switchMission(2)">M2: GROUND DIVE</button>
+          <button class="mission-btn" id="btnMission3" onclick="switchMission(3)">M3: DYNAMIC SLALOM</button>
+        </div>
+      </div>
+
+      <!-- Center Camera Switcher -->
+      <div class="cam-bar interactive">
+        <button class="cam-btn active" id="btnCamChase" onclick="setCameraMode('chase')">🎥 CHASE 3/4</button>
+        <button class="cam-btn" id="btnCamCockpit" onclick="setCameraMode('cockpit')">🎯 FPV COCKPIT</button>
+        <button class="cam-btn" id="btnCamWall" onclick="setCameraMode('wall')">🧱 OBSTACLE VIEW</button>
+        <button class="cam-btn" id="btnCamOrbit" onclick="setCameraMode('orbit')">🔄 FREE 360° ORBIT</button>
+      </div>
+
+      <!-- Top Right HIL Active Telemetry Card -->
+      <div class="hud-card telemetry-card interactive">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>HIL CLOSED-LOOP: ARMED</span>
+        </div>
+        <div class="tel-row">
+          <span>AIRSPEED:</span>
+          <span class="tel-val accent-cyan" id="valSpeed">8.00 m/s (28.8 km/h)</span>
+        </div>
+        <div class="tel-row">
+          <span>CLIMB RATE (Vz):</span>
+          <span class="tel-val accent-amber" id="valClimb">+0.00 m/s</span>
+        </div>
+        <div class="tel-row">
+          <span>LOOP LATENCY:</span>
+          <span class="tel-val accent-emerald" id="valLatency">11.02 µs (< 15 µs)</span>
+        </div>
+        <div class="tel-row">
+          <span id="lblClearance">CLEARANCE TO WALL:</span>
+          <span class="tel-val" id="valClearance">10.00 m</span>
+        </div>
+        <div class="tel-row">
+          <span>SAFETY STATUS:</span>
+          <span class="tel-val accent-emerald" id="valSafety">0 COLLISIONS (SAFE)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom HUD & Timeline Transport Bar -->
+    <div class="hud-footer">
+      <div class="bottom-cards-row">
+        <!-- Flight Phase Indicator -->
+        <div class="hud-card flight-phase-card interactive">
+          <div style="font-size:0.72rem; color:#94a3b8; font-family:'JetBrains Mono';">ARBITER SAFETY MODE</div>
+          <div class="phase-badge phase-cruise" id="phaseBadge">NOMINAL HIGH-SPEED CRUISE</div>
+          <div style="margin-top:6px; font-size:0.72rem; color:#cbd5e1; font-family:'JetBrains Mono';" id="posCoordinates">
+            X: +0.08m | Y: 0.00m | Z: +2.00m
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Interactive Timeline & Playback Dock -->
+      <div class="transport-dock interactive">
+        <button class="ctrl-btn" id="btnPlayPause" onclick="togglePlay()">⏸ PAUSE</button>
+        <button class="ctrl-btn" onclick="restartMission()">⟲ RESTART</button>
+        <button class="ctrl-btn" onclick="stepFrame(1)">⏭ STEP</button>
+
+        <div class="timeline-container">
+          <div class="timeline-labels">
+            <span id="timeCurrent">FRAME 000 / 099 (0.00s)</span>
+            <span id="timelineDetailLabel">DISTANCE: 10.0m WALL ENCOUNTER</span>
+          </div>
+          <input type="range" class="timeline-slider" id="timeSlider" min="0" max="99" value="0" oninput="onSeek(this.value)">
+        </div>
+
+        <div class="speed-group">
+          <button class="speed-btn" onclick="setSpeed(0.25, this)">0.25x</button>
+          <button class="speed-btn" onclick="setSpeed(0.5, this)">0.5x</button>
+          <button class="speed-btn active" onclick="setSpeed(1.0, this)">1.0x</button>
+          <button class="speed-btn" onclick="setSpeed(2.0, this)">2.0x</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="help-hint">
+    Mouse Drag: Rotate View | Scroll: Zoom | Space: Play/Pause | 1-4: Camera Views
+  </div>
+
+  <!-- Telemetry Data JSON & Three.js Engine -->
+  <script src="js/hil_telemetry_data.js"></script>
+  <!-- Local Three.js with CDN Fallback -->
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/vendor/OrbitControls.js"></script>
+  
+  <script>
+    // Fallback if local scripts somehow fail
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+      document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"><\/script>');
+    }
+  </script>
+
+  <!-- 3D WebGL Engine Implementation -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. Simulation Data Loading
+      let currentMission = 1;
+      let telemetry = window.HIL_MISSION_1_DATA || window.HIL_TELEMETRY_DATA || [];
+      if (!telemetry || telemetry.length === 0) {
+        console.error("Telemetry data missing!");
+      }
+
+      // App State
+      let currentFrameIdx = 0;
+      let isPlaying = true;
+      let playbackSpeed = 1.0;
+      let cameraMode = 'chase'; // 'chase', 'cockpit', 'wall', 'orbit'
+      let lastTime = performance.now();
+
+      // Three.js Core Globals
+      let scene, camera, renderer, controls;
+      let droneGroup, rotorMeshes = [], laserRaysGroup, laserImpactRings = [];
+      let trailLine, trailGeometry;
+      let trailPositions = [];
+      let dustParticles;
+
+      // Obstacle Groups for Multi-Mission HIL
+      let wallGroup, diveZoneGroup, cableGroup, intruderGroup;
+
+      // Obstacle & Scene Dimensions
+      const WALL_X = 10.0;
+      const WALL_HEIGHT = 4.0;
+      const WALL_Y_SPAN = 8.0;
+
+      // 2. Scene Initialization
+      function initScene() {
+        const container = document.getElementById('viewport-container');
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x93c5fd); // Daylight Sky
+        scene.fog = new THREE.FogExp2(0xcfd8dc, 0.018); // Soft atmospheric haze
+
+        // Camera Setup
+        camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 400);
+        camera.position.set(-4.0, 2.5, -3.5);
+
+        // Renderer with High Dynamic Range & Soft Shadows
+        renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.15;
+        container.appendChild(renderer.domElement);
+
+        // OrbitControls for Free 360° Inspection
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.maxPolarAngle = Math.PI / 2 - 0.02; // Prevent clipping below ground
+
+        // Lights
+        setupLighting();
+
+        // 3. Build Realistic Environment
+        buildRunwayAndTerrain();
+        buildIndustrialArchitecture();
+        buildHazardWallBarrier();
+        buildMission2GroundZone();
+        buildMission3SlalomObstacles();
+        buildFoliageAndVegetation();
+
+        // 4. Build Detailed 3D Drone & Sensors
+        buildDroneModel();
+        build48BeamSensorMesh();
+        buildFlightTrajectoryTrail();
+        buildDustParticleSystem();
+
+        // Event Listeners
+        window.addEventListener('resize', onWindowResize);
+        window.addEventListener('keydown', onKeyDown);
+
+        // Set default mission visuals
+        updateMissionVisuals(1);
+
+        // Start 60 FPS Render Loop
+        animate();
+      }
+
+      // =======================================================================
+      // LIGHTING SETUP (NATURAL DAYLIGHT SUN & AMBIENT)
+      // =======================================================================
+      function setupLighting() {
+        // Natural Daylight Sun
+        const sun = new THREE.DirectionalLight(0xfff8eb, 1.6);
+        sun.position.set(25, 45, -20);
+        sun.castShadow = true;
+        sun.shadow.mapSize.width = 2048;
+        sun.shadow.mapSize.height = 2048;
+        sun.shadow.camera.near = 5;
+        sun.shadow.camera.far = 120;
+        sun.shadow.camera.left = -30;
+        sun.shadow.camera.right = 30;
+        sun.shadow.camera.top = 30;
+        sun.shadow.camera.bottom = -30;
+        sun.shadow.bias = -0.0005;
+        scene.add(sun);
+
+        // Hemispheric Ambient (Sky Blue + Earthy Dirt Ground Reflection)
+        const hemiLight = new THREE.HemisphereLight(0xb0e0e6, 0x5a5448, 0.7);
+        scene.add(hemiLight);
+      }
+
+      // =======================================================================
+      // REALISTIC INDUSTRIAL ENVIRONMENT BUILDER
+      // =======================================================================
+      function buildRunwayAndTerrain() {
+        // 1. Weathered Asphalt Runway Plane
+        const runwayGeo = new THREE.PlaneGeometry(160, 16);
+        const runwayMat = new THREE.MeshStandardMaterial({
+          color: 0x33363b,
+          roughness: 0.90,
+          metalness: 0.10,
+        });
+        const runway = new THREE.Mesh(runwayGeo, runwayMat);
+        runway.rotation.x = -Math.PI / 2;
+        runway.position.set(20, 0, 0);
+        runway.receiveShadow = true;
+        scene.add(runway);
+
+        // Runway Yellow Edge Lines
+        [-6.5, 6.5].forEach(zPos => {
+          const lineGeo = new THREE.PlaneGeometry(160, 0.30);
+          const lineMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+          const line = new THREE.Mesh(lineGeo, lineMat);
+          line.rotation.x = -Math.PI / 2;
+          line.position.set(20, 0.01, zPos);
+          scene.add(line);
+        });
+
+        // Runway Center Dashed White Lines
+        for (let x = -40; x < 80; x += 6) {
+          const dashGeo = new THREE.PlaneGeometry(3.0, 0.25);
+          const dashMat = new THREE.MeshBasicMaterial({ color: 0xe2e8f0 });
+          const dash = new THREE.Mesh(dashGeo, dashMat);
+          dash.rotation.x = -Math.PI / 2;
+          dash.position.set(x, 0.01, 0);
+          scene.add(dash);
+        }
+
+        // 2. Surrounding Rough Terrain (Gravel, Dirt, Grass)
+        const terrainGeo = new THREE.PlaneGeometry(300, 300);
+        const terrainMat = new THREE.MeshStandardMaterial({
+          color: 0x55584f,
+          roughness: 0.98,
+        });
+        const terrain = new THREE.Mesh(terrainGeo, terrainMat);
+        terrain.rotation.x = -Math.PI / 2;
+        terrain.position.set(20, -0.05, 0);
+        terrain.receiveShadow = true;
+        scene.add(terrain);
+      }
+
+      function buildHazardWallBarrier() {
+        // 4m Concrete Wall Barrier (Hazard B at X=10.0m)
+        wallGroup = new THREE.Group();
+        wallGroup.position.set(WALL_X, 0, 0);
+
+        // Concrete Slabs
+        const slabGeo = new THREE.BoxGeometry(0.50, WALL_HEIGHT, WALL_Y_SPAN);
+        const slabMat = new THREE.MeshStandardMaterial({
+          color: 0x787c82,
+          roughness: 0.85,
+          metalness: 0.15,
+        });
+        const wallMesh = new THREE.Mesh(slabGeo, slabMat);
+        wallMesh.position.y = WALL_HEIGHT / 2;
+        wallMesh.castShadow = true;
+        wallMesh.receiveShadow = true;
+        wallGroup.add(wallMesh);
+
+        // Yellow & Black Hazard Chevron Caution Band across upper rim
+        const chevronGeo = new THREE.BoxGeometry(0.54, 0.60, WALL_Y_SPAN + 0.02);
+        const chevronMat = new THREE.MeshStandardMaterial({
+          color: 0xfbbf24,
+          roughness: 0.5,
+        });
+        const chevron = new THREE.Mesh(chevronGeo, chevronMat);
+        chevron.position.y = WALL_HEIGHT - 0.40;
+        chevron.castShadow = true;
+        wallGroup.add(chevron);
+
+        // Structural Steel Rebars & Posts on Top of Wall
+        [-3.0, -1.0, 1.0, 3.0].forEach(zOffset => {
+          const postGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.8, 8);
+          const postMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8 });
+          const post = new THREE.Mesh(postGeo, postMat);
+          post.position.set(0, WALL_HEIGHT + 0.4, zOffset);
+          post.castShadow = true;
+          wallGroup.add(post);
+        });
+
+        // Impact Debris / Concrete Rubble at Base
+        for (let i = 0; i < 18; i++) {
+          const s = 0.2 + Math.random() * 0.35;
+          const debrisGeo = new THREE.DodecahedronGeometry(s);
+          const debrisMat = new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.9 });
+          const debris = new THREE.Mesh(debrisGeo, debrisMat);
+          debris.position.set(
+            (Math.random() - 0.5) * 1.5,
+            s * 0.6,
+            (Math.random() - 0.5) * 6.5
+          );
+          debris.castShadow = true;
+          wallGroup.add(debris);
+        }
+
+        scene.add(wallGroup);
+      }
+
+      function buildMission2GroundZone() {
+        diveZoneGroup = new THREE.Group();
+
+        // 1. Grid of caution chevrons on runway for pull-up zone
+        const zoneGeo = new THREE.PlaneGeometry(16, 12);
+        const zoneMat = new THREE.MeshBasicMaterial({
+          color: 0xf59e0b,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.35,
+        });
+        const zoneMesh = new THREE.Mesh(zoneGeo, zoneMat);
+        zoneMesh.rotation.x = -Math.PI / 2;
+        zoneMesh.position.set(4.0, 0.02, 0.0);
+        diveZoneGroup.add(zoneMesh);
+
+        // 2. Safe Altitude Recovery Threshold Plane at Y = 1.0m (Altitude)
+        const threshGeo = new THREE.PlaneGeometry(16, 12);
+        const threshMat = new THREE.MeshBasicMaterial({
+          color: 0x10b981,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.20,
+        });
+        const threshMesh = new THREE.Mesh(threshGeo, threshMat);
+        threshMesh.rotation.x = -Math.PI / 2;
+        threshMesh.position.set(4.0, 1.0, 0.0);
+        diveZoneGroup.add(threshMesh);
+
+        // 3. Ground Proximity Warning Beacon Lights
+        [-4.5, 4.5].forEach(zPos => {
+          [0.0, 4.0, 8.0, 12.0].forEach(xPos => {
+            const beaconGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.45, 8);
+            const beaconMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: 0.4 });
+            const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+            beacon.position.set(xPos, 0.22, zPos);
+            diveZoneGroup.add(beacon);
+
+            const light = new THREE.PointLight(0xfbbf24, 0.8, 5.0);
+            light.position.set(xPos, 0.50, zPos);
+            diveZoneGroup.add(light);
+          });
+        });
+
+        diveZoneGroup.visible = false;
+        scene.add(diveZoneGroup);
+      }
+
+      function buildMission3SlalomObstacles() {
+        // 1. Cable Group (Hazard A at X = 8.0m, Height Y = 2.5m)
+        cableGroup = new THREE.Group();
+
+        const CABLE_SPAN = 20.0;
+        const CABLE_X = 8.0;
+        const CABLE_HEIGHT = 2.5;
+
+        // Transmission Cable (Thin 2cm wire)
+        const cableGeo = new THREE.CylinderGeometry(0.015, 0.015, CABLE_SPAN, 8);
+        const cableMat = new THREE.MeshStandardMaterial({
+          color: 0x1e293b,
+          metalness: 0.95,
+          roughness: 0.15,
+        });
+        const cableMesh = new THREE.Mesh(cableGeo, cableMat);
+        cableMesh.rotation.x = Math.PI / 2; // Spans across lateral Z axis
+        cableMesh.position.set(CABLE_X, CABLE_HEIGHT, 0);
+        cableMesh.castShadow = true;
+        cableGroup.add(cableMesh);
+
+        // Warning Marker Spheres along cable (High-Vis Aviation Orange)
+        [-5.0, -2.5, 0.0, 2.5, 5.0].forEach(zPos => {
+          const sphereGeo = new THREE.SphereGeometry(0.15, 16, 16);
+          const sphereMat = new THREE.MeshStandardMaterial({
+            color: 0xf97316,
+            roughness: 0.3,
+            metalness: 0.1,
+          });
+          const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+          sphere.position.set(CABLE_X, CABLE_HEIGHT, zPos);
+          sphere.castShadow = true;
+          cableGroup.add(sphere);
+        });
+
+        // Steel Lattice Pylons on both sides
+        [-CABLE_SPAN / 2, CABLE_SPAN / 2].forEach(zPos => {
+          const pylonGeo = new THREE.CylinderGeometry(0.12, 0.40, 6.0, 4);
+          const pylonMat = new THREE.MeshStandardMaterial({
+            color: 0x475569,
+            metalness: 0.85,
+            roughness: 0.3,
+            wireframe: true,
+          });
+          const pylon = new THREE.Mesh(pylonGeo, pylonMat);
+          pylon.position.set(CABLE_X, 3.0, zPos);
+          pylon.castShadow = true;
+          cableGroup.add(pylon);
+        });
+
+        cableGroup.visible = false;
+        scene.add(cableGroup);
+
+        // 2. Dynamic Lateral Intruder Hazard (Hazard C at X = 12.0m)
+        intruderGroup = new THREE.Group();
+        intruderGroup.position.set(12.0, 2.0, -4.0);
+
+        // Intruder Autonomous Transport Unit
+        const bodyGeo = new THREE.BoxGeometry(0.85, 0.50, 1.40);
+        const bodyMat = new THREE.MeshStandardMaterial({
+          color: 0xe11d48, // Ruby Warning Red
+          roughness: 0.35,
+          metalness: 0.7,
+        });
+        const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.castShadow = true;
+        intruderGroup.add(bodyMesh);
+
+        // High-Vis Strobe Light on Intruder
+        const strobeGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.15, 8);
+        const strobeMat = new THREE.MeshBasicMaterial({ color: 0xff0044 });
+        const strobeMesh = new THREE.Mesh(strobeGeo, strobeMat);
+        strobeMesh.position.y = 0.32;
+        intruderGroup.add(strobeMesh);
+
+        const strobeLight = new THREE.PointLight(0xff0044, 2.0, 8.0);
+        strobeLight.position.set(0, 0.45, 0);
+        intruderGroup.add(strobeLight);
+
+        // Twin Sensor Pods
+        [-0.35, 0.35].forEach(xOff => {
+          const podGeo = new THREE.SphereGeometry(0.12, 12, 12);
+          const podMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9 });
+          const pod = new THREE.Mesh(podGeo, podMat);
+          pod.position.set(xOff, 0, 0.65);
+          intruderGroup.add(pod);
+        });
+
+        intruderGroup.visible = false;
+        scene.add(intruderGroup);
+      }
+
+      function updateMissionVisuals(mId) {
+        if (wallGroup) wallGroup.visible = (mId === 1);
+        if (diveZoneGroup) diveZoneGroup.visible = (mId === 2);
+        if (cableGroup) cableGroup.visible = (mId === 3);
+        if (intruderGroup) intruderGroup.visible = (mId === 3);
+      }
+
+      function buildIndustrialArchitecture() {
+        // 1. Stacked 40ft Shipping Containers (Orange, Marine Blue, Rust)
+        const containerColors = [0xc2410c, 0x0369a1, 0x475569, 0xb45309];
+        const containerPositions = [
+          { x: 3.0, z: -8.5, rot: 0, color: 0 },
+          { x: 7.0, z: -8.5, rot: 0, color: 1 },
+          { x: 5.0, z: -8.5, rot: 0, y: 2.6, color: 2 }, // Stacked 2nd floor
+          { x: 14.0, z: -8.0, rot: 0.2, color: 3 },
+          { x: -5.0, z: 8.5, rot: -0.1, color: 1 },
+          { x: 2.0, z: 8.5, rot: 0, color: 0 },
+          { x: 12.0, z: 8.5, rot: 0, color: 2 },
+        ];
+
+        containerPositions.forEach(cp => {
+          const cGeo = new THREE.BoxGeometry(6.0, 2.6, 2.4);
+          const cMat = new THREE.MeshStandardMaterial({
+            color: containerColors[cp.color],
+            roughness: 0.70,
+            metalness: 0.30,
+          });
+          const cMesh = new THREE.Mesh(cGeo, cMat);
+          cMesh.position.set(cp.x, (cp.y || 0) + 1.3, cp.z);
+          cMesh.rotation.y = cp.rot;
+          cMesh.castShadow = true;
+          cMesh.receiveShadow = true;
+          scene.add(cMesh);
+        });
+
+        // 2. Large Industrial Corrugated Hangar / Warehouse (Background at X=30m, Z=-25m)
+        const hangarGeo = new THREE.BoxGeometry(35, 12, 22);
+        const hangarMat = new THREE.MeshStandardMaterial({
+          color: 0x64748b,
+          roughness: 0.65,
+          metalness: 0.40,
+        });
+        const hangar = new THREE.Mesh(hangarGeo, hangarMat);
+        hangar.position.set(25, 6, -26);
+        hangar.castShadow = true;
+        hangar.receiveShadow = true;
+        scene.add(hangar);
+
+        // 3. Cylindrical Chemical Storage Silos (Metallic Silver Tanks)
+        [-18, -12].forEach(zOffset => {
+          const siloGeo = new THREE.CylinderGeometry(2.5, 2.5, 9, 24);
+          const siloMat = new THREE.MeshStandardMaterial({
+            color: 0x94a3b8,
+            roughness: 0.35,
+            metalness: 0.75,
+          });
+          const silo = new THREE.Mesh(siloGeo, siloMat);
+          silo.position.set(20, 4.5, zOffset);
+          silo.castShadow = true;
+          scene.add(silo);
+        });
+
+        // 4. Utility Power Poles & Sagging Cables along Perimeter
+        for (let x = -20; x <= 45; x += 18) {
+          const poleGeo = new THREE.CylinderGeometry(0.12, 0.15, 8.5, 8);
+          const poleMat = new THREE.MeshStandardMaterial({ color: 0x334155 });
+          const pole = new THREE.Mesh(poleGeo, poleMat);
+          pole.position.set(x, 4.25, 10.5);
+          pole.castShadow = true;
+          scene.add(pole);
+
+          // Crossarm
+          const armGeo = new THREE.BoxGeometry(0.1, 0.15, 2.2);
+          const arm = new THREE.Mesh(armGeo, poleMat);
+          arm.position.set(x, 8.0, 10.5);
+          scene.add(arm);
+        }
+
+        // 5. Perimeter Chain-Link Fence Posts (Z = -7.5m and Z = +7.5m)
+        for (let x = -15; x < 40; x += 4) {
+          const postGeo = new THREE.CylinderGeometry(0.03, 0.03, 2.2, 6);
+          const postMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8 });
+          [-7.5, 7.5].forEach(z => {
+            const post = new THREE.Mesh(postGeo, postMat);
+            post.position.set(x, 1.1, z);
+            scene.add(post);
+          });
+        }
+      }
+
+      function buildFoliageAndVegetation() {
+        // Realistic 3D Trees (Pine and Broadleaf) scattered outside runway
+        const treePositions = [
+          { x: -10, z: -15, scale: 1.2 },
+          { x: -2, z: -18, scale: 0.9 },
+          { x: 12, z: -16, scale: 1.4 },
+          { x: 28, z: -15, scale: 1.1 },
+          { x: -8, z: 18, scale: 1.0 },
+          { x: 8, z: 20, scale: 1.3 },
+          { x: 22, z: 19, scale: 1.5 },
+          { x: 38, z: 18, scale: 0.8 },
+        ];
+
+        treePositions.forEach(tp => {
+          const treeGroup = new THREE.Group();
+          treeGroup.position.set(tp.x, 0, tp.z);
+          treeGroup.scale.set(tp.scale, tp.scale, tp.scale);
+
+          // Trunk
+          const trunkGeo = new THREE.CylinderGeometry(0.25, 0.35, 3.5, 8);
+          const trunkMat = new THREE.MeshStandardMaterial({ color: 0x4a3728, roughness: 0.9 });
+          const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+          trunk.position.y = 1.75;
+          trunk.castShadow = true;
+          treeGroup.add(trunk);
+
+          // Foliage Foliar Cones
+          const leafMat = new THREE.MeshStandardMaterial({ color: 0x2d5a27, roughness: 0.8 });
+          [
+            { r: 2.2, h: 3.0, y: 3.5 },
+            { r: 1.7, h: 2.6, y: 5.0 },
+            { r: 1.1, h: 2.0, y: 6.4 },
+          ].forEach(layer => {
+            const coneGeo = new THREE.ConeGeometry(layer.r, layer.h, 7);
+            const cone = new THREE.Mesh(coneGeo, leafMat);
+            cone.position.y = layer.y;
+            cone.castShadow = true;
+            treeGroup.add(cone);
+          });
+
+          scene.add(treeGroup);
+        });
+      }
+
+      // =======================================================================
+      // HIGH-DETAIL 3D DRONE MODEL (x500 QUADCOPTER)
+      // =======================================================================
+      function buildDroneModel() {
+        droneGroup = new THREE.Group();
+
+        // 1. Center Fuselage Pod (Matte Carbon Fiber)
+        const bodyGeo = new THREE.BoxGeometry(0.55, 0.16, 0.32);
+        const bodyMat = new THREE.MeshStandardMaterial({
+          color: 0x1e242c,
+          roughness: 0.35,
+          metalness: 0.80,
+        });
+        const body = new THREE.Mesh(bodyGeo, bodyMat);
+        body.castShadow = true;
+        droneGroup.add(body);
+
+        // Fuselage Neon Accent Trim
+        const trimGeo = new THREE.BoxGeometry(0.56, 0.03, 0.06);
+        const trimMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+        const trim = new THREE.Mesh(trimGeo, trimMat);
+        trim.position.y = 0.06;
+        droneGroup.add(trim);
+
+        // 2. Front 3D ToF Sensor Camera Turret
+        const camTurretGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.12, 16);
+        const camMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9 });
+        const turret = new THREE.Mesh(camTurretGeo, camMat);
+        turret.rotation.z = Math.PI / 2;
+        turret.position.set(0.30, 0.0, 0);
+        droneGroup.add(turret);
+
+        // Glowing Cyan Camera Lens
+        const lensGeo = new THREE.CircleGeometry(0.07, 16);
+        const lensMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+        const lens = new THREE.Mesh(lensGeo, lensMat);
+        lens.rotation.y = Math.PI / 2;
+        lens.position.set(0.36, 0.0, 0);
+        droneGroup.add(lens);
+
+        // 3. Dual Landing Gear Skids
+        [-0.14, 0.14].forEach(zOffset => {
+          const skidGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.50, 8);
+          const skidMat = new THREE.MeshStandardMaterial({ color: 0x0f172a });
+          const skid = new THREE.Mesh(skidGeo, skidMat);
+          skid.rotation.z = Math.PI / 2;
+          skid.position.set(0, -0.15, zOffset);
+          droneGroup.add(skid);
+
+          // Struts
+          [-0.15, 0.15].forEach(xOffset => {
+            const strutGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.14, 8);
+            const strut = new THREE.Mesh(strutGeo, skidMat);
+            strut.position.set(xOffset, -0.08, zOffset);
+            droneGroup.add(strut);
+          });
+        });
+
+        // 4. Four Carbon Tubular Arms & Motors
+        const armLength = 0.42;
+        const armAngle = Math.PI / 4;
+        const motorOffsets = [
+          { x: Math.cos(armAngle) * armLength, z: Math.sin(armAngle) * armLength, color: 0x10b981 }, // Front Left (Green)
+          { x: Math.cos(armAngle) * armLength, z: -Math.sin(armAngle) * armLength, color: 0xef4444 }, // Front Right (Red)
+          { x: -Math.cos(armAngle) * armLength, z: Math.sin(armAngle) * armLength, color: 0x10b981 }, // Rear Left
+          { x: -Math.cos(armAngle) * armLength, z: -Math.sin(armAngle) * armLength, color: 0xef4444 }, // Rear Right
+        ];
+
+        motorOffsets.forEach((mo, idx) => {
+          // Arm Tube
+          const armGeo = new THREE.CylinderGeometry(0.018, 0.018, armLength, 8);
+          const armMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.4 });
+          const arm = new THREE.Mesh(armGeo, armMat);
+          arm.position.set(mo.x / 2, 0.02, mo.z / 2);
+          arm.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(mo.x, 0, mo.z).normalize());
+          droneGroup.add(arm);
+
+          // Brushless Motor Pod
+          const motorGeo = new THREE.CylinderGeometry(0.045, 0.045, 0.07, 12);
+          const motorMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.85 });
+          const motor = new THREE.Mesh(motorGeo, motorMat);
+          motor.position.set(mo.x, 0.06, mo.z);
+          droneGroup.add(motor);
+
+          // Arm Tip Strobe LED
+          const ledGeo = new THREE.SphereGeometry(0.02, 8, 8);
+          const ledMat = new THREE.MeshBasicMaterial({ color: mo.color });
+          const led = new THREE.Mesh(ledGeo, ledMat);
+          led.position.set(mo.x, 0.03, mo.z);
+          droneGroup.add(led);
+
+          // 5. Spinning High-RPM Rotor Blur Disc
+          const rotorDiscGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.005, 24);
+          const rotorDiscMat = new THREE.MeshBasicMaterial({
+            color: 0xbae6fd,
+            transparent: true,
+            opacity: 0.45,
+          });
+          const rotorDisc = new THREE.Mesh(rotorDiscGeo, rotorDiscMat);
+          rotorDisc.position.set(mo.x, 0.10, mo.z);
+          droneGroup.add(rotorDisc);
+
+          // Physical Twin Propeller Blade
+          const propGeo = new THREE.BoxGeometry(0.48, 0.008, 0.03);
+          const propMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.5 });
+          const prop = new THREE.Mesh(propGeo, propMat);
+          prop.position.set(mo.x, 0.102, mo.z);
+          droneGroup.add(prop);
+
+          rotorMeshes.push({ disc: rotorDisc, blade: prop, dir: idx % 2 === 0 ? 1 : -1 });
+        });
+
+        droneGroup.position.set(0, 2.0, 0);
+        scene.add(droneGroup);
+      }
+
+      // =======================================================================
+      // 48-BEAM SPHERICAL HDC SENSOR MESH (CYAN / ALERT RED)
+      // =======================================================================
+      function build48BeamSensorMesh() {
+        laserRaysGroup = new THREE.Group();
+        droneGroup.add(laserRaysGroup);
+
+        const BEAM_COUNT = 48;
+        const MAX_RANGE = 7.5;
+
+        for (let i = 0; i < BEAM_COUNT; i++) {
+          const rayGeo = new THREE.BufferGeometry();
+          rayGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
+
+          const rayMat = new THREE.LineBasicMaterial({
+            color: 0x00f0ff,
+            transparent: true,
+            opacity: 0.45,
+            linewidth: 1.5,
+          });
+          const line = new THREE.Line(rayGeo, rayMat);
+          laserRaysGroup.add(line);
+
+          // Impact hit ring decals
+          const ringGeo = new THREE.RingGeometry(0.04, 0.09, 16);
+          const ringMat = new THREE.MeshBasicMaterial({
+            color: 0xff003c,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.0,
+          });
+          const ring = new THREE.Mesh(ringGeo, ringMat);
+          ring.rotation.y = -Math.PI / 2;
+          scene.add(ring);
+          laserImpactRings.push(ring);
+        }
+      }
+
+      // =======================================================================
+      // DYNAMIC 3D TRAJECTORY TRAIL
+      // =======================================================================
+      function buildFlightTrajectoryTrail() {
+        const MAX_POINTS = 200;
+        trailPositions = new Float32Array(MAX_POINTS * 3);
+        trailGeometry = new THREE.BufferGeometry();
+        trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+
+        const trailMaterial = new THREE.LineBasicMaterial({
+          color: 0x00f5ff,
+          linewidth: 3,
+          transparent: true,
+          opacity: 0.85,
+        });
+        trailLine = new THREE.Line(trailGeometry, trailMaterial);
+        scene.add(trailLine);
+      }
+
+      // =======================================================================
+      // THRUSTER DOWNWASH DUST PARTICLES
+      // =======================================================================
+      function buildDustParticleSystem() {
+        const count = 120;
+        const pGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 2.0;
+          positions[i * 3 + 1] = Math.random() * 0.8;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 2.0;
+        }
+        pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const pMat = new THREE.PointsMaterial({
+          color: 0xd1d5db,
+          size: 0.12,
+          transparent: true,
+          opacity: 0.45,
+        });
+        dustParticles = new THREE.Points(pGeo, pMat);
+        scene.add(dustParticles);
+      }
+
+      // =======================================================================
+      // 60 FPS ANIMATION & TELEMETRY PLAYBACK
+      // =======================================================================
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const now = performance.now();
+        const dt = (now - lastTime) / 1000.0;
+        lastTime = now;
+
+        if (isPlaying && telemetry.length > 0) {
+          // Progress frame based on speed (each frame is 10ms = 0.010s)
+          currentFrameIdx += (dt / 0.010) * playbackSpeed;
+          if (currentFrameIdx >= telemetry.length) {
+            currentFrameIdx = 0; // Seamless loop
+          }
+        }
+
+        updateDroneState();
+        updateCamera();
+        controls.update();
+
+        renderer.render(scene, camera);
+      }
+
+      function updateDroneState() {
+        if (!telemetry || telemetry.length === 0) return;
+
+        const fIdx = Math.min(Math.floor(currentFrameIdx), telemetry.length - 1);
+        const nextIdx = Math.min(fIdx + 1, telemetry.length - 1);
+        const alpha = currentFrameIdx - fIdx;
+
+        const fCur = telemetry[fIdx];
+        const fNext = telemetry[nextIdx];
+
+        // Smooth position interpolation
+        const px = fCur.x + (fNext.x - fCur.x) * alpha;
+        const py = fCur.y + (fNext.y - fCur.y) * alpha;
+        const pz = fCur.z + (fNext.z - fCur.z) * alpha;
+
+        droneGroup.position.set(px, pz, py); // In Three.js: X=forward, Y=up(altitude), Z=lateral
+
+        // Dynamic Drone Attitude Tilt based on Mission and State
+        const vx = fCur.vx;
+        const cmd_vz = fCur.cmd_vz;
+
+        if (currentMission === 1) {
+          const isVault = fCur.mode === "VerticalEscape";
+          const targetPitch = isVault ? 0.38 : -0.22;
+          droneGroup.rotation.z = -targetPitch;
+          droneGroup.rotation.x = 0;
+        } else if (currentMission === 2) {
+          const isClimb = fCur.mode.includes("CollectiveClimb") || fCur.cmd_vz > 2.0;
+          // When plunging down: pitch forward/down; when collective climb: pitch up into aggressive climb
+          const targetPitch = isClimb ? 0.48 : -0.38;
+          droneGroup.rotation.z = -targetPitch;
+          droneGroup.rotation.x = 0;
+        } else if (currentMission === 3) {
+          // Bank into the 3.5N crosswind
+          droneGroup.rotation.x = -0.16;
+          const isVault = fCur.mode === "VerticalEscape";
+          const targetPitch = isVault ? 0.28 : -0.15;
+          droneGroup.rotation.z = -targetPitch;
+
+          // Update dynamic crossing intruder position at X=12.0m (v = 3.0 m/s)
+          if (intruderGroup) {
+            const simTime = fCur.frame * 0.010;
+            const intruderZ = -4.0 + 3.0 * simTime;
+            intruderGroup.position.set(12.0, 2.0, intruderZ);
+          }
+        }
+
+        // Rotate Propellers at High RPM
+        const rpmMult = (currentMission === 2 && fCur.mode.includes("CollectiveClimb")) ? 1.5 : 1.0;
+        rotorMeshes.forEach(r => {
+          r.blade.rotation.y += 0.55 * r.dir * rpmMult;
+        });
+
+        // Update Laser Sensor Mesh & Collision Intercepts
+        updateLaserBeams(px, pz, py, fCur);
+
+        // Update Flight Trajectory Trail
+        updateTrajectoryTrail(px, pz, py, fIdx);
+
+        // Update Downwash Dust System
+        updateDustParticles(px, pz, py, cmd_vz);
+
+        // Update HUD Telemetry
+        updateHUD(fCur, px, pz, py);
+      }
+
+      function updateLaserBeams(droneX, droneAlt, droneY, fCur) {
+        const count = 48;
+        const MAX_RANGE = 7.0;
+
+        for (let i = 0; i < count; i++) {
+          const line = laserRaysGroup.children[i];
+          const ring = laserImpactRings[i];
+          if (!line) continue;
+
+          // Spherical distribution
+          const horizAngle = (i / count) * Math.PI * 2;
+          let elev = 0.0;
+          if (i % 3 === 1) elev = 0.44; // Ceiling beam
+          if (i % 3 === 2) elev = -0.44; // Ground beam
+
+          const dirX = Math.cos(horizAngle) * Math.cos(elev);
+          const dirZ = Math.sin(horizAngle) * Math.cos(elev); // lateral
+          const dirY = Math.sin(elev); // vertical
+
+          let range = MAX_RANGE;
+          let isHit = false;
+
+          if (currentMission === 1) {
+            // Ray-Box Intercept with Wall at WALL_X = 10.0m
+            if (dirX > 0.05) {
+              const distToWall = (WALL_X - droneX) / dirX;
+              if (distToWall > 0 && distToWall < MAX_RANGE) {
+                const hitY = droneAlt + dirY * distToWall;
+                const hitZ = droneY + dirZ * distToWall;
+                if (hitY >= 0 && hitY <= WALL_HEIGHT && Math.abs(hitZ) <= WALL_Y_SPAN / 2) {
+                  range = distToWall;
+                  isHit = true;
+                  ring.position.set(WALL_X - 0.02, hitY, hitZ);
+                  ring.material.opacity = 0.85;
+                  ring.scale.setScalar(1.0 + Math.sin(performance.now() * 0.02) * 0.2);
+                }
+              }
+            }
+          } else if (currentMission === 2) {
+            // Downward beam intercept with ground plane at Y = 0.0m
+            if (dirY < -0.05) {
+              const distToGround = -droneAlt / dirY;
+              if (distToGround > 0 && distToGround < MAX_RANGE) {
+                range = distToGround;
+                isHit = true;
+                ring.position.set(droneX + dirX * range, 0.02, droneY + dirZ * range);
+                ring.material.opacity = 0.85;
+                ring.scale.setScalar(1.0 + Math.sin(performance.now() * 0.02) * 0.2);
+              }
+            }
+          } else if (currentMission === 3) {
+            // Cable at X=8.0m and Intruder at X=12.0m
+            if (dirX > 0.05) {
+              const distToCable = (8.0 - droneX) / dirX;
+              if (distToCable > 0 && distToCable < MAX_RANGE) {
+                const hitY = droneAlt + dirY * distToCable;
+                if (Math.abs(hitY - 2.5) < 0.35) {
+                  range = distToCable;
+                  isHit = true;
+                  ring.position.set(8.0, 2.5, droneY + dirZ * distToCable);
+                  ring.material.opacity = 0.85;
+                }
+              }
+            }
+          }
+
+          if (!isHit) {
+            ring.material.opacity = 0.0;
+          }
+
+          // Update beam endpoint in drone local coordinates
+          const endX = dirX * range;
+          const endY = dirY * range;
+          const endZ = dirZ * range;
+
+          const posAttr = line.geometry.attributes.position;
+          posAttr.setXYZ(0, 0.35, 0, 0); // Emitter nose
+          posAttr.setXYZ(1, endX, endY, endZ);
+          posAttr.needsUpdate = true;
+
+          // Color Shift: Clear Cyan -> Warning Ruby Red on Obstacle Contact
+          if (isHit) {
+            line.material.color.setHex(0xff003c);
+            line.material.opacity = 0.75;
+          } else {
+            line.material.color.setHex(0x00f0ff);
+            line.material.opacity = 0.20;
+          }
+        }
+      }
+
+      function updateTrajectoryTrail(px, pz, py, fIdx) {
+        const count = Math.min(fIdx + 1, telemetry.length);
+        for (let i = 0; i < count; i++) {
+          const f = telemetry[i];
+          trailPositions[i * 3] = f.x;
+          trailPositions[i * 3 + 1] = f.z;
+          trailPositions[i * 3 + 2] = f.y;
+        }
+        trailGeometry.setDrawRange(0, count);
+        trailGeometry.attributes.position.needsUpdate = true;
+      }
+
+      function updateDustParticles(px, pz, py, cmd_vz) {
+        if (!dustParticles) return;
+        const posAttr = dustParticles.geometry.attributes.position;
+        const count = posAttr.count;
+
+        for (let i = 0; i < count; i++) {
+          let y = posAttr.getY(i) - 0.015;
+          if (y <= 0) {
+            posAttr.setX(i, px + (Math.random() - 0.5) * 1.5);
+            posAttr.setY(i, Math.max(0.1, pz - 0.3));
+            posAttr.setZ(i, py + (Math.random() - 0.5) * 1.5);
+          } else {
+            posAttr.setY(i, y);
+          }
+        }
+        posAttr.needsUpdate = true;
+      }
+
+      // =======================================================================
+      // CAMERA PERSPECTIVE CONTROLLERS
+      // =======================================================================
+      function updateCamera() {
+        const dPos = droneGroup.position;
+
+        if (cameraMode === 'chase') {
+          // Dynamic 3/4 Shoulder View following with smooth damping
+          const targetCamX = dPos.x - 4.2;
+          const targetCamY = dPos.y + 1.4;
+          const targetCamZ = dPos.z - 2.8;
+
+          camera.position.lerp(new THREE.Vector3(targetCamX, targetCamY, targetCamZ), 0.12);
+          controls.target.lerp(new THREE.Vector3(dPos.x + 2.5, dPos.y, dPos.z), 0.15);
+        } else if (cameraMode === 'cockpit') {
+          // FPV Nose Cockpit View directly from the camera turret
+          camera.position.set(dPos.x + 0.38, dPos.y + 0.02, dPos.z);
+          controls.target.set(dPos.x + 8.0, dPos.y - 0.2, dPos.z);
+        } else if (cameraMode === 'wall') {
+          // Ground Observer View adapted to current mission
+          if (currentMission === 1) {
+            camera.position.set(WALL_X + 2.5, 0.8, -4.5);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          } else if (currentMission === 2) {
+            camera.position.set(6.0, 0.35, -3.5);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          } else if (currentMission === 3) {
+            camera.position.set(10.0, 1.8, -5.0);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          }
+        }
+        // In 'orbit' mode, user has full mouse OrbitControls free look
+      }
+
+      window.setCameraMode = function(mode) {
+        cameraMode = mode;
+        document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
+        if (mode === 'chase') document.getElementById('btnCamChase').classList.add('active');
+        if (mode === 'cockpit') document.getElementById('btnCamCockpit').classList.add('active');
+        if (mode === 'wall') document.getElementById('btnCamWall').classList.add('active');
+        if (mode === 'orbit') document.getElementById('btnCamOrbit').classList.add('active');
+      };
+
+      // =======================================================================
+      // HUD TELEMETRY UPDATE
+      // =======================================================================
+      function updateHUD(f, px, pz, py) {
+        document.getElementById('valSpeed').innerText = `${f.vx.toFixed(2)} m/s (${(f.vx * 3.6).toFixed(1)} km/h)`;
+        document.getElementById('valClimb').innerText = `${f.cmd_vz >= 0 ? '+' : ''}${f.cmd_vz.toFixed(2)} m/s`;
+        document.getElementById('valLatency').innerText = `${f.latency.toFixed(2)} µs (< 15 µs)`;
+
+        const phaseBadge = document.getElementById('phaseBadge');
+
+        if (currentMission === 1) {
+          const distToWall = Math.max(0, WALL_X - px);
+          document.getElementById('valClearance').innerText = `${distToWall.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 COLLISIONS (SAFE)";
+          document.getElementById('lblClearance').innerText = "CLEARANCE TO WALL:";
+
+          if (f.mode === "VerticalEscape") {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "VERTICAL ESCAPE ENGAGED (VAULTING OVER WALL)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "NOMINAL CRUISE (8.0 m/s SPEED)";
+          }
+        } else if (currentMission === 2) {
+          document.getElementById('valClearance').innerText = `${pz.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 GROUND IMPACTS (CLEAN PULL-UP)";
+          document.getElementById('lblClearance').innerText = "GROUND CLEARANCE:";
+
+          if (f.mode.includes("CollectiveClimb")) {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "COLLECTIVE CLIMB (+6.0 m/s PULL-UP REFLEX)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "STEEP PLUNGE DIVE (-3.5 m/s DESCENT)";
+          }
+        } else if (currentMission === 3) {
+          const intruderZ = -4.0 + 3.0 * (f.frame * 0.010);
+          const distToIntruder = Math.hypot(12.0 - px, intruderZ - py);
+          document.getElementById('valClearance').innerText = `${distToIntruder.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 SNAGS // DISTURBANCE REJECTED";
+          document.getElementById('lblClearance').innerText = "INTRUDER DISTANCE:";
+
+          if (f.mode === "VerticalEscape") {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "SLALOM REFLEX (CABLE & INTRUDER AVOIDANCE)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "CROSSWIND REJECTION (3.5N LATERAL OBSERVER)";
+          }
+        }
+
+        // Coordinates
+        document.getElementById('posCoordinates').innerText = 
+          `X: +${px.toFixed(2)}m | Y: ${py.toFixed(2)}m | ALT: +${pz.toFixed(2)}m`;
+
+        // Timeline Slider
+        const slider = document.getElementById('timeSlider');
+        slider.value = f.frame;
+        const totalF = telemetry.length;
+        document.getElementById('timeCurrent').innerText = 
+          `FRAME ${String(f.frame).padStart(3, '0')} / ${String(totalF - 1).padStart(3, '0')} (${(f.frame * 0.010).toFixed(2)}s)`;
+      }
+
+      // =======================================================================
+      // MULTI-MISSION SELECTOR
+      // =======================================================================
+      window.switchMission = function(missionId) {
+        currentMission = missionId;
+        if (missionId === 1) telemetry = window.HIL_MISSION_1_DATA || [];
+        else if (missionId === 2) telemetry = window.HIL_MISSION_2_DATA || [];
+        else if (missionId === 3) telemetry = window.HIL_MISSION_3_DATA || [];
+
+        currentFrameIdx = 0;
+        isPlaying = true;
+        document.getElementById('btnPlayPause').innerText = "⏸ PAUSE";
+
+        const slider = document.getElementById('timeSlider');
+        slider.max = telemetry.length - 1;
+        slider.value = 0;
+
+        document.querySelectorAll('.mission-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`btnMission${missionId}`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        const titleEl = document.getElementById('missionSubTitle');
+        const labelsEl = document.getElementById('timelineDetailLabel');
+        if (missionId === 1) {
+          titleEl.innerText = "MISSION 1: HIGH-SPEED WALL ABORT // PX4 SITL + GAZEBO HARMONIC";
+          if (labelsEl) labelsEl.innerText = "DISTANCE: 10.0m WALL ENCOUNTER";
+        } else if (missionId === 2) {
+          titleEl.innerText = "MISSION 2: STEEP GROUND DIVE RECOVERY (PLUNGE Vz = -3.5 m/s)";
+          if (labelsEl) labelsEl.innerText = "GROUND DIVE: 0.0m RUNWAY IMPACT THRESHOLD";
+        } else if (missionId === 3) {
+          titleEl.innerText = "MISSION 3: CABLE SLALOM & DYNAMIC MOVING HAZARD PENETRATION";
+          if (labelsEl) labelsEl.innerText = "HAZARDS: OVERHEAD CABLE (X=8.0m) & INTRUDER (X=12.0m, v=3.0 m/s)";
+        }
+
+        updateMissionVisuals(missionId);
+      };
+
+      // =======================================================================
+      // INTERACTIVE CONTROLS (PLAY/PAUSE/SEEK/SPEED)
+      // =======================================================================
+      window.togglePlay = function() {
+        isPlaying = !isPlaying;
+        document.getElementById('btnPlayPause').innerText = isPlaying ? "⏸ PAUSE" : "▶ PLAY";
+      };
+
+      window.restartMission = function() {
+        currentFrameIdx = 0;
+        isPlaying = true;
+        document.getElementById('btnPlayPause').innerText = "⏸ PAUSE";
+      };
+
+      window.stepFrame = function(delta) {
+        isPlaying = false;
+        document.getElementById('btnPlayPause').innerText = "▶ PLAY";
+        currentFrameIdx = Math.max(0, Math.min(telemetry.length - 1, currentFrameIdx + delta));
+      };
+
+      window.onSeek = function(val) {
+        currentFrameIdx = parseInt(val, 10);
+      };
+
+      window.setSpeed = function(spd, btn) {
+        playbackSpeed = spd;
+        document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      function onKeyDown(e) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          window.togglePlay();
+        } else if (e.key === '1') setCameraMode('chase');
+        else if (e.key === '2') setCameraMode('cockpit');
+        else if (e.key === '3') setCameraMode('wall');
+        else if (e.key === '4') setCameraMode('orbit');
+      }
+
+      // Start on load
+      initScene();
+    })();
+  </script>
+</body>
+</html>
