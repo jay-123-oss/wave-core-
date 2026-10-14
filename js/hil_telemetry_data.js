@@ -1,4 +1,5 @@
-window.HIL_TELEMETRY_DATA = [
+// AUTO-GENERATED HIL TELEMETRY DATA FOR MISSIONS 1, 2, AND 3
+window.HIL_MISSION_1_DATA = [
   {
     "frame": 0,
     "x": 0.08,
@@ -9,7 +10,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 17.82
+    "latency": 18.84
   },
   {
     "frame": 1,
@@ -21,7 +22,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.47
+    "latency": 9.69
   },
   {
     "frame": 2,
@@ -33,7 +34,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.79
+    "latency": 8.89
   },
   {
     "frame": 3,
@@ -45,7 +46,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.74
+    "latency": 10.82
   },
   {
     "frame": 4,
@@ -57,7 +58,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.42
+    "latency": 9.04
   },
   {
     "frame": 5,
@@ -69,7 +70,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.27
+    "latency": 8.87
   },
   {
     "frame": 6,
@@ -81,7 +82,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.95
+    "latency": 9.19
   },
   {
     "frame": 7,
@@ -93,7 +94,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.43
+    "latency": 11.21
   },
   {
     "frame": 8,
@@ -105,7 +106,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.2
+    "latency": 10.14
   },
   {
     "frame": 9,
@@ -117,7 +118,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.64
+    "latency": 13.6
   },
   {
     "frame": 10,
@@ -129,7 +130,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.62
+    "latency": 8.93
   },
   {
     "frame": 11,
@@ -141,7 +142,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.88
+    "latency": 13.12
   },
   {
     "frame": 12,
@@ -153,7 +154,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.04
+    "latency": 8.68
   },
   {
     "frame": 13,
@@ -165,7 +166,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.49
+    "latency": 10.58
   },
   {
     "frame": 14,
@@ -177,7 +178,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.44
+    "latency": 13.67
   },
   {
     "frame": 15,
@@ -189,7 +190,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.56
+    "latency": 8.68
   },
   {
     "frame": 16,
@@ -201,7 +202,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.47
+    "latency": 11.09
   },
   {
     "frame": 17,
@@ -213,7 +214,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.53
+    "latency": 8.52
   },
   {
     "frame": 18,
@@ -225,7 +226,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.5
+    "latency": 8.94
   },
   {
     "frame": 19,
@@ -237,7 +238,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.68
+    "latency": 8.6
   },
   {
     "frame": 20,
@@ -249,7 +250,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.64
+    "latency": 8.79
   },
   {
     "frame": 21,
@@ -261,7 +262,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 9.14
+    "latency": 13.95
   },
   {
     "frame": 22,
@@ -273,7 +274,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.62
+    "latency": 8.94
   },
   {
     "frame": 23,
@@ -285,7 +286,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 12.88
+    "latency": 10.52
   },
   {
     "frame": 24,
@@ -297,7 +298,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.84
+    "latency": 8.92
   },
   {
     "frame": 25,
@@ -309,7 +310,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 15.61
+    "latency": 8.57
   },
   {
     "frame": 26,
@@ -321,7 +322,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.43
+    "latency": 8.74
   },
   {
     "frame": 27,
@@ -333,7 +334,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 9.14
+    "latency": 11.97
   },
   {
     "frame": 28,
@@ -345,7 +346,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.49
+    "latency": 9.3
   },
   {
     "frame": 29,
@@ -357,7 +358,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 11.15
+    "latency": 8.49
   },
   {
     "frame": 30,
@@ -369,7 +370,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 23.22
+    "latency": 8.54
   },
   {
     "frame": 31,
@@ -381,7 +382,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 13.2
+    "latency": 8.76
   },
   {
     "frame": 32,
@@ -393,7 +394,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 13.68
+    "latency": 13.93
   },
   {
     "frame": 33,
@@ -405,7 +406,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 10.19
+    "latency": 9.03
   },
   {
     "frame": 34,
@@ -417,7 +418,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 11.42
+    "latency": 8.99
   },
   {
     "frame": 35,
@@ -429,7 +430,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.02
+    "latency": 8.71
   },
   {
     "frame": 36,
@@ -441,7 +442,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.63
+    "latency": 13.64
   },
   {
     "frame": 37,
@@ -453,7 +454,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.5
+    "latency": 8.76
   },
   {
     "frame": 38,
@@ -465,7 +466,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.52
+    "latency": 8.63
   },
   {
     "frame": 39,
@@ -477,7 +478,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.52
+    "latency": 8.56
   },
   {
     "frame": 40,
@@ -489,7 +490,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.47
+    "latency": 8.54
   },
   {
     "frame": 41,
@@ -501,7 +502,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.73
+    "latency": 14.39
   },
   {
     "frame": 42,
@@ -513,7 +514,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.66
+    "latency": 9.14
   },
   {
     "frame": 43,
@@ -525,7 +526,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.57
+    "latency": 8.73
   },
   {
     "frame": 44,
@@ -537,7 +538,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.5
+    "latency": 9.45
   },
   {
     "frame": 45,
@@ -549,7 +550,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 12.08
+    "latency": 10.49
   },
   {
     "frame": 46,
@@ -561,7 +562,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.75
+    "latency": 13.16
   },
   {
     "frame": 47,
@@ -573,7 +574,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.39
+    "latency": 8.83
   },
   {
     "frame": 48,
@@ -585,7 +586,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.52
+    "latency": 8.69
   },
   {
     "frame": 49,
@@ -597,7 +598,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.62
+    "latency": 8.64
   },
   {
     "frame": 50,
@@ -609,7 +610,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.07
+    "latency": 8.9
   },
   {
     "frame": 51,
@@ -621,7 +622,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 12.79
+    "latency": 9.96
   },
   {
     "frame": 52,
@@ -633,7 +634,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 26.0
+    "latency": 14.62
   },
   {
     "frame": 53,
@@ -645,7 +646,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 13.21
+    "latency": 9.1
   },
   {
     "frame": 54,
@@ -657,7 +658,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 15.65
+    "latency": 8.94
   },
   {
     "frame": 55,
@@ -669,7 +670,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 13.79
+    "latency": 13.85
   },
   {
     "frame": 56,
@@ -681,7 +682,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.63
+    "latency": 14.03
   },
   {
     "frame": 57,
@@ -693,7 +694,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 8.7
+    "latency": 14.14
   },
   {
     "frame": 58,
@@ -705,7 +706,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.96
+    "latency": 15.29
   },
   {
     "frame": 59,
@@ -717,7 +718,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.56
+    "latency": 14.13
   },
   {
     "frame": 60,
@@ -729,7 +730,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 7.57
+    "latency": 14.04
   },
   {
     "frame": 61,
@@ -741,7 +742,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 9.85
+    "latency": 11.16
   },
   {
     "frame": 62,
@@ -753,7 +754,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.0,
     "mode": "Nominal",
     "clearance": 2.0,
-    "latency": 20.67
+    "latency": 9.59
   },
   {
     "frame": 63,
@@ -765,7 +766,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.01,
-    "latency": 13.61
+    "latency": 8.82
   },
   {
     "frame": 64,
@@ -777,7 +778,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.02,
-    "latency": 13.55
+    "latency": 14.2
   },
   {
     "frame": 65,
@@ -789,7 +790,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.04,
-    "latency": 13.43
+    "latency": 11.26
   },
   {
     "frame": 66,
@@ -801,7 +802,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.06,
-    "latency": 13.54
+    "latency": 9.19
   },
   {
     "frame": 67,
@@ -813,7 +814,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.09,
-    "latency": 14.6
+    "latency": 9.02
   },
   {
     "frame": 68,
@@ -825,7 +826,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.12,
-    "latency": 33.66
+    "latency": 14.4
   },
   {
     "frame": 69,
@@ -837,7 +838,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.15,
-    "latency": 12.26
+    "latency": 9.35
   },
   {
     "frame": 70,
@@ -849,7 +850,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.19,
-    "latency": 20.71
+    "latency": 9.22
   },
   {
     "frame": 71,
@@ -861,7 +862,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.22,
-    "latency": 12.51
+    "latency": 9.16
   },
   {
     "frame": 72,
@@ -873,7 +874,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.26,
-    "latency": 13.98
+    "latency": 13.72
   },
   {
     "frame": 73,
@@ -885,7 +886,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.3,
-    "latency": 22.19
+    "latency": 9.28
   },
   {
     "frame": 74,
@@ -897,7 +898,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.34,
-    "latency": 13.78
+    "latency": 15.07
   },
   {
     "frame": 75,
@@ -909,7 +910,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.38,
-    "latency": 17.66
+    "latency": 16.28
   },
   {
     "frame": 76,
@@ -921,7 +922,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.42,
-    "latency": 13.18
+    "latency": 10.03
   },
   {
     "frame": 77,
@@ -933,7 +934,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.46,
-    "latency": 14.87
+    "latency": 8.81
   },
   {
     "frame": 78,
@@ -945,7 +946,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.51,
-    "latency": 13.59
+    "latency": 14.41
   },
   {
     "frame": 79,
@@ -957,7 +958,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.55,
-    "latency": 9.41
+    "latency": 13.99
   },
   {
     "frame": 80,
@@ -969,7 +970,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.59,
-    "latency": 17.26
+    "latency": 10.52
   },
   {
     "frame": 81,
@@ -981,7 +982,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.64,
-    "latency": 8.37
+    "latency": 14.09
   },
   {
     "frame": 82,
@@ -993,7 +994,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.68,
-    "latency": 7.58
+    "latency": 13.5
   },
   {
     "frame": 83,
@@ -1005,7 +1006,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.72,
-    "latency": 7.7
+    "latency": 9.36
   },
   {
     "frame": 84,
@@ -1017,7 +1018,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 4.5,
     "mode": "VerticalEscape",
     "clearance": 2.74,
-    "latency": 7.75
+    "latency": 14.51
   },
   {
     "frame": 85,
@@ -1029,7 +1030,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.96,
     "mode": "VerticalEscape",
     "clearance": 2.74,
-    "latency": 7.74
+    "latency": 15.46
   },
   {
     "frame": 86,
@@ -1041,7 +1042,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.89,
     "mode": "VerticalEscape",
     "clearance": 2.72,
-    "latency": 7.66
+    "latency": 9.58
   },
   {
     "frame": 87,
@@ -1053,7 +1054,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.82,
     "mode": "VerticalEscape",
     "clearance": 2.7,
-    "latency": 7.79
+    "latency": 13.69
   },
   {
     "frame": 88,
@@ -1065,7 +1066,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.76,
     "mode": "VerticalEscape",
     "clearance": 2.67,
-    "latency": 9.36
+    "latency": 13.76
   },
   {
     "frame": 89,
@@ -1077,7 +1078,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.71,
     "mode": "VerticalEscape",
     "clearance": 2.63,
-    "latency": 13.01
+    "latency": 13.96
   },
   {
     "frame": 90,
@@ -1089,7 +1090,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.66,
     "mode": "VerticalEscape",
     "clearance": 2.58,
-    "latency": 8.85
+    "latency": 14.28
   },
   {
     "frame": 91,
@@ -1101,7 +1102,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.62,
     "mode": "VerticalEscape",
     "clearance": 2.53,
-    "latency": 14.22
+    "latency": 13.69
   },
   {
     "frame": 92,
@@ -1113,7 +1114,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.59,
     "mode": "VerticalEscape",
     "clearance": 2.47,
-    "latency": 12.78
+    "latency": 14.51
   },
   {
     "frame": 93,
@@ -1125,7 +1126,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.56,
     "mode": "VerticalEscape",
     "clearance": 2.41,
-    "latency": 8.12
+    "latency": 14.71
   },
   {
     "frame": 94,
@@ -1137,7 +1138,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.53,
     "mode": "VerticalEscape",
     "clearance": 2.35,
-    "latency": 8.11
+    "latency": 14.82
   },
   {
     "frame": 95,
@@ -1149,7 +1150,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.5,
     "mode": "VerticalEscape",
     "clearance": 2.29,
-    "latency": 13.39
+    "latency": 12.27
   },
   {
     "frame": 96,
@@ -1161,7 +1162,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.48,
     "mode": "VerticalEscape",
     "clearance": 2.22,
-    "latency": 12.43
+    "latency": 11.12
   },
   {
     "frame": 97,
@@ -1173,7 +1174,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.46,
     "mode": "VerticalEscape",
     "clearance": 2.15,
-    "latency": 16.23
+    "latency": 14.4
   },
   {
     "frame": 98,
@@ -1185,7 +1186,7 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.44,
     "mode": "VerticalEscape",
     "clearance": 2.09,
-    "latency": 20.5
+    "latency": 11.71
   },
   {
     "frame": 99,
@@ -1197,6 +1198,2655 @@ window.HIL_TELEMETRY_DATA = [
     "cmd_vz": 0.43,
     "mode": "VerticalEscape",
     "clearance": 2.02,
-    "latency": 12.87
+    "latency": 8.89
   }
 ];
+
+window.HIL_MISSION_2_DATA = [
+  {
+    "frame": 0,
+    "x": 0.0,
+    "y": 0.0,
+    "z": 4.0,
+    "vx": 1.17,
+    "vy": 0.0,
+    "cmd_vz": 0.75,
+    "mode": "Nominal",
+    "clearance": 4.0,
+    "latency": 40.61
+  },
+  {
+    "frame": 1,
+    "x": 0.01,
+    "y": 0.0,
+    "z": 3.97,
+    "vx": 1.06,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.97,
+    "latency": 26.78
+  },
+  {
+    "frame": 2,
+    "x": 0.02,
+    "y": 0.0,
+    "z": 3.96,
+    "vx": 0.96,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.96,
+    "latency": 29.98
+  },
+  {
+    "frame": 3,
+    "x": 0.03,
+    "y": 0.0,
+    "z": 3.96,
+    "vx": 0.9,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.96,
+    "latency": 38.46
+  },
+  {
+    "frame": 4,
+    "x": 0.04,
+    "y": 0.0,
+    "z": 3.97,
+    "vx": 0.85,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.97,
+    "latency": 27.15
+  },
+  {
+    "frame": 5,
+    "x": 0.05,
+    "y": 0.0,
+    "z": 3.98,
+    "vx": 0.79,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.98,
+    "latency": 24.75
+  },
+  {
+    "frame": 6,
+    "x": 0.06,
+    "y": 0.0,
+    "z": 4.01,
+    "vx": 0.75,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.01,
+    "latency": 37.23
+  },
+  {
+    "frame": 7,
+    "x": 0.06,
+    "y": 0.0,
+    "z": 4.04,
+    "vx": 0.7,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.04,
+    "latency": 25.73
+  },
+  {
+    "frame": 8,
+    "x": 0.07,
+    "y": 0.0,
+    "z": 4.08,
+    "vx": 0.67,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.08,
+    "latency": 36.3
+  },
+  {
+    "frame": 9,
+    "x": 0.08,
+    "y": 0.0,
+    "z": 4.11,
+    "vx": 0.89,
+    "vy": 0.0,
+    "cmd_vz": -2.95,
+    "mode": "Nominal",
+    "clearance": 4.11,
+    "latency": 37.2
+  },
+  {
+    "frame": 10,
+    "x": 0.09,
+    "y": 0.0,
+    "z": 4.14,
+    "vx": 1.07,
+    "vy": 0.0,
+    "cmd_vz": -2.95,
+    "mode": "Nominal",
+    "clearance": 4.14,
+    "latency": 48.73
+  },
+  {
+    "frame": 11,
+    "x": 0.1,
+    "y": 0.0,
+    "z": 4.16,
+    "vx": 1.23,
+    "vy": 0.0,
+    "cmd_vz": -2.98,
+    "mode": "Nominal",
+    "clearance": 4.16,
+    "latency": 37.59
+  },
+  {
+    "frame": 12,
+    "x": 0.11,
+    "y": 0.0,
+    "z": 4.17,
+    "vx": 1.36,
+    "vy": 0.0,
+    "cmd_vz": -2.98,
+    "mode": "Nominal",
+    "clearance": 4.17,
+    "latency": 39.44
+  },
+  {
+    "frame": 13,
+    "x": 0.12,
+    "y": 0.0,
+    "z": 4.18,
+    "vx": 1.46,
+    "vy": 0.0,
+    "cmd_vz": -3.01,
+    "mode": "Nominal",
+    "clearance": 4.18,
+    "latency": 24.76
+  },
+  {
+    "frame": 14,
+    "x": 0.14,
+    "y": 0.0,
+    "z": 4.17,
+    "vx": 1.55,
+    "vy": 0.0,
+    "cmd_vz": -3.01,
+    "mode": "Nominal",
+    "clearance": 4.17,
+    "latency": 23.28
+  },
+  {
+    "frame": 15,
+    "x": 0.15,
+    "y": 0.0,
+    "z": 4.17,
+    "vx": 1.63,
+    "vy": 0.0,
+    "cmd_vz": -3.06,
+    "mode": "Nominal",
+    "clearance": 4.17,
+    "latency": 28.36
+  },
+  {
+    "frame": 16,
+    "x": 0.17,
+    "y": 0.0,
+    "z": 4.16,
+    "vx": 1.69,
+    "vy": 0.0,
+    "cmd_vz": -3.06,
+    "mode": "Nominal",
+    "clearance": 4.16,
+    "latency": 35.03
+  },
+  {
+    "frame": 17,
+    "x": 0.19,
+    "y": 0.0,
+    "z": 4.14,
+    "vx": 1.74,
+    "vy": 0.0,
+    "cmd_vz": -3.11,
+    "mode": "Nominal",
+    "clearance": 4.14,
+    "latency": 23.18
+  },
+  {
+    "frame": 18,
+    "x": 0.2,
+    "y": 0.0,
+    "z": 4.13,
+    "vx": 1.78,
+    "vy": 0.0,
+    "cmd_vz": -3.11,
+    "mode": "Nominal",
+    "clearance": 4.13,
+    "latency": 30.71
+  },
+  {
+    "frame": 19,
+    "x": 0.22,
+    "y": 0.0,
+    "z": 4.11,
+    "vx": 1.82,
+    "vy": 0.0,
+    "cmd_vz": -3.17,
+    "mode": "Nominal",
+    "clearance": 4.11,
+    "latency": 37.84
+  },
+  {
+    "frame": 20,
+    "x": 0.24,
+    "y": 0.0,
+    "z": 4.08,
+    "vx": 1.85,
+    "vy": 0.0,
+    "cmd_vz": -3.17,
+    "mode": "Nominal",
+    "clearance": 4.08,
+    "latency": 37.34
+  },
+  {
+    "frame": 21,
+    "x": 0.26,
+    "y": 0.0,
+    "z": 4.06,
+    "vx": 1.88,
+    "vy": 0.0,
+    "cmd_vz": -3.21,
+    "mode": "Nominal",
+    "clearance": 4.06,
+    "latency": 23.95
+  },
+  {
+    "frame": 22,
+    "x": 0.28,
+    "y": 0.0,
+    "z": 4.04,
+    "vx": 1.9,
+    "vy": 0.0,
+    "cmd_vz": -3.21,
+    "mode": "Nominal",
+    "clearance": 4.04,
+    "latency": 28.99
+  },
+  {
+    "frame": 23,
+    "x": 0.3,
+    "y": 0.0,
+    "z": 4.01,
+    "vx": 1.91,
+    "vy": 0.0,
+    "cmd_vz": -3.24,
+    "mode": "Nominal",
+    "clearance": 4.01,
+    "latency": 36.73
+  },
+  {
+    "frame": 24,
+    "x": 0.32,
+    "y": 0.0,
+    "z": 3.98,
+    "vx": 1.93,
+    "vy": 0.0,
+    "cmd_vz": -3.24,
+    "mode": "Nominal",
+    "clearance": 3.98,
+    "latency": 32.21
+  },
+  {
+    "frame": 25,
+    "x": 0.34,
+    "y": 0.0,
+    "z": 3.96,
+    "vx": 1.94,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.96,
+    "latency": 24.79
+  },
+  {
+    "frame": 26,
+    "x": 0.35,
+    "y": 0.0,
+    "z": 3.93,
+    "vx": 1.95,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.93,
+    "latency": 23.47
+  },
+  {
+    "frame": 27,
+    "x": 0.37,
+    "y": 0.0,
+    "z": 3.9,
+    "vx": 1.96,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.9,
+    "latency": 24.37
+  },
+  {
+    "frame": 28,
+    "x": 0.39,
+    "y": 0.0,
+    "z": 3.87,
+    "vx": 1.97,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.87,
+    "latency": 23.65
+  },
+  {
+    "frame": 29,
+    "x": 0.41,
+    "y": 0.0,
+    "z": 3.84,
+    "vx": 1.97,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.84,
+    "latency": 24.4
+  },
+  {
+    "frame": 30,
+    "x": 0.43,
+    "y": 0.0,
+    "z": 3.81,
+    "vx": 1.98,
+    "vy": 0.0,
+    "cmd_vz": -3.26,
+    "mode": "Nominal",
+    "clearance": 3.81,
+    "latency": 23.65
+  },
+  {
+    "frame": 31,
+    "x": 0.45,
+    "y": 0.0,
+    "z": 3.78,
+    "vx": 1.98,
+    "vy": 0.0,
+    "cmd_vz": -3.25,
+    "mode": "Nominal",
+    "clearance": 3.78,
+    "latency": 62.81
+  },
+  {
+    "frame": 32,
+    "x": 0.47,
+    "y": 0.0,
+    "z": 3.75,
+    "vx": 1.98,
+    "vy": 0.0,
+    "cmd_vz": -3.25,
+    "mode": "Nominal",
+    "clearance": 3.75,
+    "latency": 27.24
+  },
+  {
+    "frame": 33,
+    "x": 0.49,
+    "y": 0.0,
+    "z": 3.71,
+    "vx": 1.99,
+    "vy": 0.0,
+    "cmd_vz": -3.23,
+    "mode": "Nominal",
+    "clearance": 3.71,
+    "latency": 24.67
+  },
+  {
+    "frame": 34,
+    "x": 0.51,
+    "y": 0.0,
+    "z": 3.68,
+    "vx": 1.99,
+    "vy": 0.0,
+    "cmd_vz": -3.23,
+    "mode": "Nominal",
+    "clearance": 3.68,
+    "latency": 34.33
+  },
+  {
+    "frame": 35,
+    "x": 0.53,
+    "y": 0.0,
+    "z": 3.65,
+    "vx": 1.99,
+    "vy": 0.0,
+    "cmd_vz": -3.21,
+    "mode": "Nominal",
+    "clearance": 3.65,
+    "latency": 40.11
+  },
+  {
+    "frame": 36,
+    "x": 0.55,
+    "y": 0.0,
+    "z": 3.62,
+    "vx": 1.99,
+    "vy": 0.0,
+    "cmd_vz": -3.21,
+    "mode": "Nominal",
+    "clearance": 3.62,
+    "latency": 26.92
+  },
+  {
+    "frame": 37,
+    "x": 0.57,
+    "y": 0.0,
+    "z": 3.59,
+    "vx": 1.81,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.59,
+    "latency": 24.28
+  },
+  {
+    "frame": 38,
+    "x": 0.59,
+    "y": 0.0,
+    "z": 3.57,
+    "vx": 1.65,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.57,
+    "latency": 24.31
+  },
+  {
+    "frame": 39,
+    "x": 0.61,
+    "y": 0.0,
+    "z": 3.57,
+    "vx": 1.52,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.57,
+    "latency": 24.75
+  },
+  {
+    "frame": 40,
+    "x": 0.62,
+    "y": 0.0,
+    "z": 3.57,
+    "vx": 1.42,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.57,
+    "latency": 24.24
+  },
+  {
+    "frame": 41,
+    "x": 0.64,
+    "y": 0.0,
+    "z": 3.59,
+    "vx": 1.33,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.59,
+    "latency": 38.67
+  },
+  {
+    "frame": 42,
+    "x": 0.65,
+    "y": 0.0,
+    "z": 3.61,
+    "vx": 1.26,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.61,
+    "latency": 39.61
+  },
+  {
+    "frame": 43,
+    "x": 0.66,
+    "y": 0.0,
+    "z": 3.64,
+    "vx": 1.21,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.64,
+    "latency": 26.23
+  },
+  {
+    "frame": 44,
+    "x": 0.67,
+    "y": 0.0,
+    "z": 3.68,
+    "vx": 1.16,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.68,
+    "latency": 38.22
+  },
+  {
+    "frame": 45,
+    "x": 0.69,
+    "y": 0.0,
+    "z": 3.71,
+    "vx": 1.12,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.71,
+    "latency": 36.15
+  },
+  {
+    "frame": 46,
+    "x": 0.7,
+    "y": 0.0,
+    "z": 3.76,
+    "vx": 1.09,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.76,
+    "latency": 24.62
+  },
+  {
+    "frame": 47,
+    "x": 0.71,
+    "y": 0.0,
+    "z": 3.8,
+    "vx": 1.07,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.8,
+    "latency": 40.16
+  },
+  {
+    "frame": 48,
+    "x": 0.72,
+    "y": 0.0,
+    "z": 3.85,
+    "vx": 1.05,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.85,
+    "latency": 30.49
+  },
+  {
+    "frame": 49,
+    "x": 0.73,
+    "y": 0.0,
+    "z": 3.9,
+    "vx": 1.03,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.9,
+    "latency": 24.12
+  },
+  {
+    "frame": 50,
+    "x": 0.74,
+    "y": 0.0,
+    "z": 3.95,
+    "vx": 1.02,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 3.95,
+    "latency": 25.68
+  },
+  {
+    "frame": 51,
+    "x": 0.75,
+    "y": 0.0,
+    "z": 4.0,
+    "vx": 1.01,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.0,
+    "latency": 23.97
+  },
+  {
+    "frame": 52,
+    "x": 0.76,
+    "y": 0.0,
+    "z": 4.06,
+    "vx": 1.0,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.06,
+    "latency": 23.8
+  },
+  {
+    "frame": 53,
+    "x": 0.77,
+    "y": 0.0,
+    "z": 4.11,
+    "vx": 1.0,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.11,
+    "latency": 35.34
+  },
+  {
+    "frame": 54,
+    "x": 0.78,
+    "y": 0.0,
+    "z": 4.17,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.17,
+    "latency": 40.73
+  },
+  {
+    "frame": 55,
+    "x": 0.79,
+    "y": 0.0,
+    "z": 4.23,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.23,
+    "latency": 37.65
+  },
+  {
+    "frame": 56,
+    "x": 0.8,
+    "y": 0.0,
+    "z": 4.28,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.28,
+    "latency": 38.97
+  },
+  {
+    "frame": 57,
+    "x": 0.81,
+    "y": 0.0,
+    "z": 4.34,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.34,
+    "latency": 38.66
+  },
+  {
+    "frame": 58,
+    "x": 0.82,
+    "y": 0.0,
+    "z": 4.4,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.4,
+    "latency": 24.89
+  },
+  {
+    "frame": 59,
+    "x": 0.83,
+    "y": 0.0,
+    "z": 4.46,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.46,
+    "latency": 23.13
+  },
+  {
+    "frame": 60,
+    "x": 0.84,
+    "y": 0.0,
+    "z": 4.52,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.52,
+    "latency": 23.55
+  },
+  {
+    "frame": 61,
+    "x": 0.85,
+    "y": 0.0,
+    "z": 4.57,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.57,
+    "latency": 31.18
+  },
+  {
+    "frame": 62,
+    "x": 0.86,
+    "y": 0.0,
+    "z": 4.63,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.63,
+    "latency": 27.44
+  },
+  {
+    "frame": 63,
+    "x": 0.87,
+    "y": 0.0,
+    "z": 4.69,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.69,
+    "latency": 38.02
+  },
+  {
+    "frame": 64,
+    "x": 0.88,
+    "y": 0.0,
+    "z": 4.75,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.75,
+    "latency": 27.4
+  },
+  {
+    "frame": 65,
+    "x": 0.89,
+    "y": 0.0,
+    "z": 4.81,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.81,
+    "latency": 24.43
+  },
+  {
+    "frame": 66,
+    "x": 0.9,
+    "y": 0.0,
+    "z": 4.87,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.87,
+    "latency": 42.14
+  },
+  {
+    "frame": 67,
+    "x": 0.91,
+    "y": 0.0,
+    "z": 4.93,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.93,
+    "latency": 40.11
+  },
+  {
+    "frame": 68,
+    "x": 0.92,
+    "y": 0.0,
+    "z": 4.99,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 4.99,
+    "latency": 36.76
+  },
+  {
+    "frame": 69,
+    "x": 0.93,
+    "y": 0.0,
+    "z": 5.05,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.05,
+    "latency": 37.66
+  },
+  {
+    "frame": 70,
+    "x": 0.94,
+    "y": 0.0,
+    "z": 5.11,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.11,
+    "latency": 38.49
+  },
+  {
+    "frame": 71,
+    "x": 0.95,
+    "y": 0.0,
+    "z": 5.17,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.17,
+    "latency": 34.28
+  },
+  {
+    "frame": 72,
+    "x": 0.96,
+    "y": 0.0,
+    "z": 5.23,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.23,
+    "latency": 24.67
+  },
+  {
+    "frame": 73,
+    "x": 0.97,
+    "y": 0.0,
+    "z": 5.29,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.29,
+    "latency": 37.95
+  },
+  {
+    "frame": 74,
+    "x": 0.98,
+    "y": 0.0,
+    "z": 5.35,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.35,
+    "latency": 35.53
+  },
+  {
+    "frame": 75,
+    "x": 0.99,
+    "y": 0.0,
+    "z": 5.41,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.41,
+    "latency": 39.33
+  },
+  {
+    "frame": 76,
+    "x": 1.0,
+    "y": 0.0,
+    "z": 5.47,
+    "vx": 0.99,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.47,
+    "latency": 38.34
+  },
+  {
+    "frame": 77,
+    "x": 1.01,
+    "y": 0.0,
+    "z": 5.53,
+    "vx": 0.98,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.53,
+    "latency": 37.2
+  },
+  {
+    "frame": 78,
+    "x": 1.02,
+    "y": 0.0,
+    "z": 5.59,
+    "vx": 0.97,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.59,
+    "latency": 34.91
+  },
+  {
+    "frame": 79,
+    "x": 1.03,
+    "y": 0.0,
+    "z": 5.65,
+    "vx": 0.94,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.65,
+    "latency": 46.03
+  },
+  {
+    "frame": 80,
+    "x": 1.04,
+    "y": 0.0,
+    "z": 5.71,
+    "vx": 0.92,
+    "vy": 0.0,
+    "cmd_vz": 6.0,
+    "mode": "VerticalFailsafe(CollectiveClimb)",
+    "clearance": 5.71,
+    "latency": 29.44
+  },
+  {
+    "frame": 81,
+    "x": 1.05,
+    "y": 0.0,
+    "z": 5.77,
+    "vx": 1.1,
+    "vy": 0.0,
+    "cmd_vz": -2.36,
+    "mode": "Nominal",
+    "clearance": 5.77,
+    "latency": 40.04
+  },
+  {
+    "frame": 82,
+    "x": 1.06,
+    "y": 0.0,
+    "z": 5.81,
+    "vx": 1.25,
+    "vy": 0.0,
+    "cmd_vz": -2.36,
+    "mode": "Nominal",
+    "clearance": 5.81,
+    "latency": 36.03
+  },
+  {
+    "frame": 83,
+    "x": 1.07,
+    "y": 0.0,
+    "z": 5.85,
+    "vx": 1.38,
+    "vy": 0.0,
+    "cmd_vz": -2.38,
+    "mode": "Nominal",
+    "clearance": 5.85,
+    "latency": 40.27
+  },
+  {
+    "frame": 84,
+    "x": 1.08,
+    "y": 0.0,
+    "z": 5.87,
+    "vx": 1.48,
+    "vy": 0.0,
+    "cmd_vz": -2.38,
+    "mode": "Nominal",
+    "clearance": 5.87,
+    "latency": 37.26
+  },
+  {
+    "frame": 85,
+    "x": 1.1,
+    "y": 0.0,
+    "z": 5.89,
+    "vx": 1.57,
+    "vy": 0.0,
+    "cmd_vz": -2.42,
+    "mode": "Nominal",
+    "clearance": 5.89,
+    "latency": 29.38
+  },
+  {
+    "frame": 86,
+    "x": 1.11,
+    "y": 0.0,
+    "z": 5.9,
+    "vx": 1.64,
+    "vy": 0.0,
+    "cmd_vz": -2.42,
+    "mode": "Nominal",
+    "clearance": 5.9,
+    "latency": 23.17
+  },
+  {
+    "frame": 87,
+    "x": 1.13,
+    "y": 0.0,
+    "z": 5.9,
+    "vx": 1.7,
+    "vy": 0.0,
+    "cmd_vz": -2.46,
+    "mode": "Nominal",
+    "clearance": 5.9,
+    "latency": 23.59
+  },
+  {
+    "frame": 88,
+    "x": 1.15,
+    "y": 0.0,
+    "z": 5.9,
+    "vx": 1.75,
+    "vy": 0.0,
+    "cmd_vz": -2.46,
+    "mode": "Nominal",
+    "clearance": 5.9,
+    "latency": 31.0
+  },
+  {
+    "frame": 89,
+    "x": 1.16,
+    "y": 0.0,
+    "z": 5.9,
+    "vx": 1.79,
+    "vy": 0.0,
+    "cmd_vz": -2.51,
+    "mode": "Nominal",
+    "clearance": 5.9,
+    "latency": 23.64
+  },
+  {
+    "frame": 90,
+    "x": 1.18,
+    "y": 0.0,
+    "z": 5.89,
+    "vx": 1.83,
+    "vy": 0.0,
+    "cmd_vz": -2.51,
+    "mode": "Nominal",
+    "clearance": 5.89,
+    "latency": 30.93
+  },
+  {
+    "frame": 91,
+    "x": 1.2,
+    "y": 0.0,
+    "z": 5.88,
+    "vx": 1.85,
+    "vy": 0.0,
+    "cmd_vz": -2.57,
+    "mode": "Nominal",
+    "clearance": 5.88,
+    "latency": 27.74
+  },
+  {
+    "frame": 92,
+    "x": 1.22,
+    "y": 0.0,
+    "z": 5.87,
+    "vx": 1.88,
+    "vy": 0.0,
+    "cmd_vz": -2.57,
+    "mode": "Nominal",
+    "clearance": 5.87,
+    "latency": 32.19
+  },
+  {
+    "frame": 93,
+    "x": 1.24,
+    "y": 0.0,
+    "z": 5.85,
+    "vx": 1.9,
+    "vy": 0.0,
+    "cmd_vz": -2.64,
+    "mode": "Nominal",
+    "clearance": 5.85,
+    "latency": 23.59
+  },
+  {
+    "frame": 94,
+    "x": 1.26,
+    "y": 0.0,
+    "z": 5.83,
+    "vx": 1.92,
+    "vy": 0.0,
+    "cmd_vz": -2.64,
+    "mode": "Nominal",
+    "clearance": 5.83,
+    "latency": 23.08
+  },
+  {
+    "frame": 95,
+    "x": 1.28,
+    "y": 0.0,
+    "z": 5.81,
+    "vx": 1.93,
+    "vy": 0.0,
+    "cmd_vz": -2.7,
+    "mode": "Nominal",
+    "clearance": 5.81,
+    "latency": 23.05
+  },
+  {
+    "frame": 96,
+    "x": 1.29,
+    "y": 0.0,
+    "z": 5.79,
+    "vx": 1.94,
+    "vy": 0.0,
+    "cmd_vz": -2.7,
+    "mode": "Nominal",
+    "clearance": 5.79,
+    "latency": 24.38
+  },
+  {
+    "frame": 97,
+    "x": 1.31,
+    "y": 0.0,
+    "z": 5.77,
+    "vx": 1.95,
+    "vy": 0.0,
+    "cmd_vz": -2.77,
+    "mode": "Nominal",
+    "clearance": 5.77,
+    "latency": 22.82
+  },
+  {
+    "frame": 98,
+    "x": 1.33,
+    "y": 0.0,
+    "z": 5.75,
+    "vx": 1.96,
+    "vy": 0.0,
+    "cmd_vz": -2.77,
+    "mode": "Nominal",
+    "clearance": 5.75,
+    "latency": 26.48
+  },
+  {
+    "frame": 99,
+    "x": 1.35,
+    "y": 0.0,
+    "z": 5.73,
+    "vx": 1.97,
+    "vy": 0.0,
+    "cmd_vz": -2.85,
+    "mode": "Nominal",
+    "clearance": 5.73,
+    "latency": 33.21
+  }
+];
+
+window.HIL_MISSION_3_DATA = [
+  {
+    "frame": 0,
+    "x": 0.05,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.02,
+    "cmd_vz": 0.75,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 53.69
+  },
+  {
+    "frame": 1,
+    "x": 0.1,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.04,
+    "cmd_vz": 0.0,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 38.4
+  },
+  {
+    "frame": 2,
+    "x": 0.15,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.05,
+    "cmd_vz": 0.0,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 32.15
+  },
+  {
+    "frame": 3,
+    "x": 0.2,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.06,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 39.38
+  },
+  {
+    "frame": 4,
+    "x": 0.25,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.07,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 36.98
+  },
+  {
+    "frame": 5,
+    "x": 0.3,
+    "y": 0.0,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.08,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 39.13
+  },
+  {
+    "frame": 6,
+    "x": 0.35,
+    "y": 0.0,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.08,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 40.16
+  },
+  {
+    "frame": 7,
+    "x": 0.4,
+    "y": 0.0,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.09,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 29.87
+  },
+  {
+    "frame": 8,
+    "x": 0.45,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.09,
+    "cmd_vz": -0.0,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 25.82
+  },
+  {
+    "frame": 9,
+    "x": 0.5,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.1,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 30.94
+  },
+  {
+    "frame": 10,
+    "x": 0.55,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.1,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 50.54
+  },
+  {
+    "frame": 11,
+    "x": 0.6,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.1,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.7
+  },
+  {
+    "frame": 12,
+    "x": 0.65,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 29.69
+  },
+  {
+    "frame": 13,
+    "x": 0.7,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 31.66
+  },
+  {
+    "frame": 14,
+    "x": 0.75,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 27.22
+  },
+  {
+    "frame": 15,
+    "x": 0.8,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 35.15
+  },
+  {
+    "frame": 16,
+    "x": 0.85,
+    "y": 0.01,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 39.4
+  },
+  {
+    "frame": 17,
+    "x": 0.9,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 34.09
+  },
+  {
+    "frame": 18,
+    "x": 0.95,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 39.87
+  },
+  {
+    "frame": 19,
+    "x": 1.0,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 36.72
+  },
+  {
+    "frame": 20,
+    "x": 1.05,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 34.1
+  },
+  {
+    "frame": 21,
+    "x": 1.1,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 35.02
+  },
+  {
+    "frame": 22,
+    "x": 1.15,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.11,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 25.55
+  },
+  {
+    "frame": 23,
+    "x": 1.2,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 31.94
+  },
+  {
+    "frame": 24,
+    "x": 1.25,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 30.96
+  },
+  {
+    "frame": 25,
+    "x": 1.3,
+    "y": 0.02,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 31.03
+  },
+  {
+    "frame": 26,
+    "x": 1.35,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 39.44
+  },
+  {
+    "frame": 27,
+    "x": 1.4,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 34.62
+  },
+  {
+    "frame": 28,
+    "x": 1.45,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 37.84
+  },
+  {
+    "frame": 29,
+    "x": 1.5,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 37.66
+  },
+  {
+    "frame": 30,
+    "x": 1.55,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.42
+  },
+  {
+    "frame": 31,
+    "x": 1.6,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 25.09
+  },
+  {
+    "frame": 32,
+    "x": 1.65,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 31.71
+  },
+  {
+    "frame": 33,
+    "x": 1.7,
+    "y": 0.03,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.99
+  },
+  {
+    "frame": 34,
+    "x": 1.75,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.35
+  },
+  {
+    "frame": 35,
+    "x": 1.8,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.34
+  },
+  {
+    "frame": 36,
+    "x": 1.85,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.47
+  },
+  {
+    "frame": 37,
+    "x": 1.9,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 24.59
+  },
+  {
+    "frame": 38,
+    "x": 1.95,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 25.95
+  },
+  {
+    "frame": 39,
+    "x": 2.0,
+    "y": 0.04,
+    "z": 2.01,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.01,
+    "latency": 37.27
+  },
+  {
+    "frame": 40,
+    "x": 2.05,
+    "y": 0.04,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 39.05
+  },
+  {
+    "frame": 41,
+    "x": 2.1,
+    "y": 0.04,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 37.45
+  },
+  {
+    "frame": 42,
+    "x": 2.15,
+    "y": 0.04,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 41.64
+  },
+  {
+    "frame": 43,
+    "x": 2.2,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 40.09
+  },
+  {
+    "frame": 44,
+    "x": 2.25,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 30.32
+  },
+  {
+    "frame": 45,
+    "x": 2.3,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 32.02
+  },
+  {
+    "frame": 46,
+    "x": 2.35,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.39
+  },
+  {
+    "frame": 47,
+    "x": 2.4,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 37.59
+  },
+  {
+    "frame": 48,
+    "x": 2.45,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.19
+  },
+  {
+    "frame": 49,
+    "x": 2.5,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 30.85
+  },
+  {
+    "frame": 50,
+    "x": 2.55,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 36.95
+  },
+  {
+    "frame": 51,
+    "x": 2.6,
+    "y": 0.05,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.58
+  },
+  {
+    "frame": 52,
+    "x": 2.65,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 32.7
+  },
+  {
+    "frame": 53,
+    "x": 2.7,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 28.68
+  },
+  {
+    "frame": 54,
+    "x": 2.75,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 27.91
+  },
+  {
+    "frame": 55,
+    "x": 2.8,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.59
+  },
+  {
+    "frame": 56,
+    "x": 2.85,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 32.62
+  },
+  {
+    "frame": 57,
+    "x": 2.9,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.39
+  },
+  {
+    "frame": 58,
+    "x": 2.95,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 36.14
+  },
+  {
+    "frame": 59,
+    "x": 3.0,
+    "y": 0.06,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.69
+  },
+  {
+    "frame": 60,
+    "x": 3.05,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.76
+  },
+  {
+    "frame": 61,
+    "x": 3.1,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 33.74
+  },
+  {
+    "frame": 62,
+    "x": 3.15,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 30.15
+  },
+  {
+    "frame": 63,
+    "x": 3.2,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 31.7
+  },
+  {
+    "frame": 64,
+    "x": 3.25,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 30.7
+  },
+  {
+    "frame": 65,
+    "x": 3.3,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 27.39
+  },
+  {
+    "frame": 66,
+    "x": 3.35,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 30.01
+  },
+  {
+    "frame": 67,
+    "x": 3.4,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 35.45
+  },
+  {
+    "frame": 68,
+    "x": 3.45,
+    "y": 0.07,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 28.19
+  },
+  {
+    "frame": 69,
+    "x": 3.5,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 34.28
+  },
+  {
+    "frame": 70,
+    "x": 3.55,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 29.59
+  },
+  {
+    "frame": 71,
+    "x": 3.6,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 44.15
+  },
+  {
+    "frame": 72,
+    "x": 3.65,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 37.23
+  },
+  {
+    "frame": 73,
+    "x": 3.7,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 37.28
+  },
+  {
+    "frame": 74,
+    "x": 3.75,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.34
+  },
+  {
+    "frame": 75,
+    "x": 3.8,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.55
+  },
+  {
+    "frame": 76,
+    "x": 3.85,
+    "y": 0.08,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.7
+  },
+  {
+    "frame": 77,
+    "x": 3.9,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.21
+  },
+  {
+    "frame": 78,
+    "x": 3.95,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 24.63
+  },
+  {
+    "frame": 79,
+    "x": 4.0,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 27.34
+  },
+  {
+    "frame": 80,
+    "x": 4.05,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.22
+  },
+  {
+    "frame": 81,
+    "x": 4.1,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.39
+  },
+  {
+    "frame": 82,
+    "x": 4.15,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.02
+  },
+  {
+    "frame": 83,
+    "x": 4.2,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 25.41
+  },
+  {
+    "frame": 84,
+    "x": 4.25,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 31.23
+  },
+  {
+    "frame": 85,
+    "x": 4.3,
+    "y": 0.09,
+    "z": 2.0,
+    "vx": 5.0,
+    "vy": 0.12,
+    "cmd_vz": -0.01,
+    "mode": "Nominal",
+    "clearance": 2.0,
+    "latency": 34.73
+  },
+  {
+    "frame": 86,
+    "x": 4.34,
+    "y": 0.1,
+    "z": 2.01,
+    "vx": 3.75,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.01,
+    "latency": 36.62
+  },
+  {
+    "frame": 87,
+    "x": 4.36,
+    "y": 0.1,
+    "z": 2.02,
+    "vx": 2.71,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.02,
+    "latency": 30.86
+  },
+  {
+    "frame": 88,
+    "x": 4.38,
+    "y": 0.1,
+    "z": 2.04,
+    "vx": 1.84,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.04,
+    "latency": 37.27
+  },
+  {
+    "frame": 89,
+    "x": 4.39,
+    "y": 0.1,
+    "z": 2.06,
+    "vx": 1.12,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.06,
+    "latency": 37.91
+  },
+  {
+    "frame": 90,
+    "x": 4.4,
+    "y": 0.1,
+    "z": 2.09,
+    "vx": 0.51,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.09,
+    "latency": 39.74
+  },
+  {
+    "frame": 91,
+    "x": 4.4,
+    "y": 0.1,
+    "z": 2.12,
+    "vx": 0.01,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.12,
+    "latency": 38.59
+  },
+  {
+    "frame": 92,
+    "x": 4.4,
+    "y": 0.1,
+    "z": 2.15,
+    "vx": -0.41,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.15,
+    "latency": 40.49
+  },
+  {
+    "frame": 93,
+    "x": 4.39,
+    "y": 0.1,
+    "z": 2.19,
+    "vx": -0.76,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.19,
+    "latency": 36.09
+  },
+  {
+    "frame": 94,
+    "x": 4.38,
+    "y": 0.1,
+    "z": 2.22,
+    "vx": -1.05,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.22,
+    "latency": 35.44
+  },
+  {
+    "frame": 95,
+    "x": 4.36,
+    "y": 0.11,
+    "z": 2.26,
+    "vx": -1.29,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.26,
+    "latency": 35.89
+  },
+  {
+    "frame": 96,
+    "x": 4.35,
+    "y": 0.11,
+    "z": 2.3,
+    "vx": -1.49,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.3,
+    "latency": 35.62
+  },
+  {
+    "frame": 97,
+    "x": 4.33,
+    "y": 0.11,
+    "z": 2.34,
+    "vx": -1.66,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.34,
+    "latency": 35.93
+  },
+  {
+    "frame": 98,
+    "x": 4.31,
+    "y": 0.11,
+    "z": 2.38,
+    "vx": -1.8,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.38,
+    "latency": 36.97
+  },
+  {
+    "frame": 99,
+    "x": 4.3,
+    "y": 0.11,
+    "z": 2.42,
+    "vx": -1.92,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.42,
+    "latency": 36.91
+  },
+  {
+    "frame": 100,
+    "x": 4.28,
+    "y": 0.11,
+    "z": 2.47,
+    "vx": -2.01,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.47,
+    "latency": 35.72
+  },
+  {
+    "frame": 101,
+    "x": 4.25,
+    "y": 0.11,
+    "z": 2.51,
+    "vx": -2.09,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.51,
+    "latency": 40.99
+  },
+  {
+    "frame": 102,
+    "x": 4.23,
+    "y": 0.11,
+    "z": 2.55,
+    "vx": -2.16,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.55,
+    "latency": 37.81
+  },
+  {
+    "frame": 103,
+    "x": 4.21,
+    "y": 0.12,
+    "z": 2.59,
+    "vx": -2.22,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.59,
+    "latency": 35.75
+  },
+  {
+    "frame": 104,
+    "x": 4.19,
+    "y": 0.12,
+    "z": 2.64,
+    "vx": -2.27,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.64,
+    "latency": 37.15
+  },
+  {
+    "frame": 105,
+    "x": 4.17,
+    "y": 0.12,
+    "z": 2.68,
+    "vx": -2.3,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.68,
+    "latency": 37.2
+  },
+  {
+    "frame": 106,
+    "x": 4.14,
+    "y": 0.12,
+    "z": 2.73,
+    "vx": -2.34,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.73,
+    "latency": 40.94
+  },
+  {
+    "frame": 107,
+    "x": 4.12,
+    "y": 0.12,
+    "z": 2.77,
+    "vx": -2.36,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.77,
+    "latency": 35.71
+  },
+  {
+    "frame": 108,
+    "x": 4.09,
+    "y": 0.12,
+    "z": 2.81,
+    "vx": -2.39,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.81,
+    "latency": 36.99
+  },
+  {
+    "frame": 109,
+    "x": 4.07,
+    "y": 0.12,
+    "z": 2.86,
+    "vx": -2.41,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.86,
+    "latency": 38.16
+  },
+  {
+    "frame": 110,
+    "x": 4.05,
+    "y": 0.12,
+    "z": 2.9,
+    "vx": -2.42,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.9,
+    "latency": 38.25
+  },
+  {
+    "frame": 111,
+    "x": 4.02,
+    "y": 0.12,
+    "z": 2.95,
+    "vx": -2.43,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.95,
+    "latency": 38.14
+  },
+  {
+    "frame": 112,
+    "x": 4.0,
+    "y": 0.13,
+    "z": 2.99,
+    "vx": -2.45,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 2.99,
+    "latency": 35.13
+  },
+  {
+    "frame": 113,
+    "x": 3.97,
+    "y": 0.13,
+    "z": 3.04,
+    "vx": -2.45,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.04,
+    "latency": 38.09
+  },
+  {
+    "frame": 114,
+    "x": 3.95,
+    "y": 0.13,
+    "z": 3.08,
+    "vx": -2.46,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.08,
+    "latency": 37.83
+  },
+  {
+    "frame": 115,
+    "x": 3.92,
+    "y": 0.13,
+    "z": 3.13,
+    "vx": -2.47,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.13,
+    "latency": 36.48
+  },
+  {
+    "frame": 116,
+    "x": 3.9,
+    "y": 0.13,
+    "z": 3.17,
+    "vx": -2.47,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.17,
+    "latency": 38.86
+  },
+  {
+    "frame": 117,
+    "x": 3.87,
+    "y": 0.13,
+    "z": 3.22,
+    "vx": -2.48,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.22,
+    "latency": 36.78
+  },
+  {
+    "frame": 118,
+    "x": 3.85,
+    "y": 0.13,
+    "z": 3.26,
+    "vx": -2.48,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.26,
+    "latency": 36.1
+  },
+  {
+    "frame": 119,
+    "x": 3.82,
+    "y": 0.13,
+    "z": 3.31,
+    "vx": -2.48,
+    "vy": 0.12,
+    "cmd_vz": 4.5,
+    "mode": "VerticalEscape",
+    "clearance": 3.31,
+    "latency": 37.64
+  }
+];
+
+// Default active mission
+window.HIL_TELEMETRY_DATA = window.HIL_MISSION_1_DATA;

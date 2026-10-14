@@ -46,7 +46,7 @@
     
     // Time
     lastTime: performance.now(),
-    cycleTimeUs: 5.56,
+    cycleTimeUs: 2.85,
   };
 
   // DOM Elements
@@ -110,7 +110,7 @@
       simModeBadge.textContent = 'MODE: WAVE-CORE PROTECTED';
       simModeBadge.style.color = '#00f2fe';
       simModeBadge.style.borderColor = 'rgba(0,242,254,0.4)';
-      modeDescription.textContent = 'Wave-Core transparently monitors sensor streams and overrides in 5.56 µs if a hazard is detected.';
+      modeDescription.textContent = 'Wave-Core transparently monitors sensor streams and overrides in 2.85 µs if a hazard is detected.';
     } else {
       btnDisableWaveCore.classList.add('active');
       btnEnableWaveCore.classList.remove('active');
@@ -241,9 +241,9 @@
 
     if (isImminentCollision) {
       if (state.mode === 'wavecore') {
-        // Wave-Core Safety Arbiter Takes Over in 5.56 µs!
+        // Wave-Core Safety Arbiter Takes Over in 2.85 µs!
         state.overrideActive = true;
-        state.cycleTimeUs = 5.56;
+        state.cycleTimeUs = 2.85;
 
         // Emergency Climb & Braking Action
         if (state.scenario === 'dive') {
@@ -258,7 +258,7 @@
         state.droneX += state.forwardSpeed * 40 * dt;
 
         // Display Alert Banner
-        canvasAlertMsg.textContent = '⚡ WAVE-CORE REFLEX OVERRIDE (5.56 µs): CLIMB +6.0 m/s & BRAKE APPLIED';
+        canvasAlertMsg.textContent = '⚡ WAVE-CORE REFLEX OVERRIDE (2.85 µs): CLIMB +6.0 m/s & BRAKE APPLIED';
         canvasAlertBanner.classList.add('active');
 
         // MAVLink Hex packet update (SET_POSITION_TARGET_LOCAL_NED)
@@ -365,7 +365,7 @@
 
     if (canvasArbiterText) {
       if (state.overrideActive) {
-        canvasArbiterText.textContent = 'INTERVENING (5.56 µs)';
+        canvasArbiterText.textContent = 'INTERVENING (2.85 µs)';
         canvasArbiterText.className = 'hud-m-val text-emerald';
       } else {
         canvasArbiterText.textContent = 'STANDBY (0% OVERHEAD)';

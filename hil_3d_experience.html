@@ -178,6 +178,37 @@
       box-shadow: 0 2px 10px rgba(2, 132, 199, 0.5);
     }
 
+    /* Mission Selector Buttons */
+    .mission-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .mission-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.70rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mission-btn:hover {
+      color: #ffffff;
+      background: rgba(0, 240, 255, 0.15);
+      border-color: #00f0ff;
+    }
+    .mission-btn.active {
+      background: rgba(0, 240, 255, 0.22);
+      border-color: #00f0ff;
+      color: #00f0ff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+    }
+
     /* Bottom Control Dock */
     .hud-footer {
       display: flex;
@@ -347,8 +378,13 @@
         <div class="brand-title">
           <span>⚡</span> WAVE-CORE AVIONICS // 3D HIL LAB
         </div>
-        <div class="brand-sub">
+        <div class="brand-sub" id="missionSubTitle">
           MISSION 1: HIGH-SPEED WALL ABORT // PX4 SITL + GAZEBO HARMONIC
+        </div>
+        <div class="mission-bar">
+          <button class="mission-btn active" id="btnMission1" onclick="switchMission(1)">M1: BLAST WALL</button>
+          <button class="mission-btn" id="btnMission2" onclick="switchMission(2)">M2: GROUND DIVE</button>
+          <button class="mission-btn" id="btnMission3" onclick="switchMission(3)">M3: DYNAMIC SLALOM</button>
         </div>
       </div>
 
@@ -356,7 +392,7 @@
       <div class="cam-bar interactive">
         <button class="cam-btn active" id="btnCamChase" onclick="setCameraMode('chase')">🎥 CHASE 3/4</button>
         <button class="cam-btn" id="btnCamCockpit" onclick="setCameraMode('cockpit')">🎯 FPV COCKPIT</button>
-        <button class="cam-btn" id="btnCamWall" onclick="setCameraMode('wall')">🧱 GROUND WALL</button>
+        <button class="cam-btn" id="btnCamWall" onclick="setCameraMode('wall')">🧱 OBSTACLE VIEW</button>
         <button class="cam-btn" id="btnCamOrbit" onclick="setCameraMode('orbit')">🔄 FREE 360° ORBIT</button>
       </div>
 
@@ -379,11 +415,11 @@
           <span class="tel-val accent-emerald" id="valLatency">11.02 µs (< 15 µs)</span>
         </div>
         <div class="tel-row">
-          <span>CLEARANCE TO WALL:</span>
+          <span id="lblClearance">CLEARANCE TO WALL:</span>
           <span class="tel-val" id="valClearance">10.00 m</span>
         </div>
         <div class="tel-row">
-          <span>COLLISION HAZARD:</span>
+          <span>SAFETY STATUS:</span>
           <span class="tel-val accent-emerald" id="valSafety">0 COLLISIONS (SAFE)</span>
         </div>
       </div>
@@ -411,7 +447,7 @@
         <div class="timeline-container">
           <div class="timeline-labels">
             <span id="timeCurrent">FRAME 000 / 099 (0.00s)</span>
-            <span>DISTANCE: 10.0m WALL ENCOUNTER</span>
+            <span id="timelineDetailLabel">DISTANCE: 10.0m WALL ENCOUNTER</span>
           </div>
           <input type="range" class="timeline-slider" id="timeSlider" min="0" max="99" value="0" oninput="onSeek(this.value)">
         </div>
@@ -450,7 +486,8 @@
       'use strict';
 
       // 1. Simulation Data Loading
-      const telemetry = window.HIL_TELEMETRY_DATA || [];
+      let currentMission = 1;
+      let telemetry = window.HIL_MISSION_1_DATA || window.HIL_TELEMETRY_DATA || [];
       if (!telemetry || telemetry.length === 0) {
         console.error("Telemetry data missing!");
       }
@@ -468,6 +505,9 @@
       let trailLine, trailGeometry;
       let trailPositions = [];
       let dustParticles;
+
+      // Obstacle Groups for Multi-Mission HIL
+      let wallGroup, diveZoneGroup, cableGroup, intruderGroup;
 
       // Obstacle & Scene Dimensions
       const WALL_X = 10.0;
@@ -508,6 +548,8 @@
         buildRunwayAndTerrain();
         buildIndustrialArchitecture();
         buildHazardWallBarrier();
+        buildMission2GroundZone();
+        buildMission3SlalomObstacles();
         buildFoliageAndVegetation();
 
         // 4. Build Detailed 3D Drone & Sensors
@@ -519,6 +561,9 @@
         // Event Listeners
         window.addEventListener('resize', onWindowResize);
         window.addEventListener('keydown', onKeyDown);
+
+        // Set default mission visuals
+        updateMissionVisuals(1);
 
         // Start 60 FPS Render Loop
         animate();
@@ -600,7 +645,7 @@
 
       function buildHazardWallBarrier() {
         // 4m Concrete Wall Barrier (Hazard B at X=10.0m)
-        const wallGroup = new THREE.Group();
+        wallGroup = new THREE.Group();
         wallGroup.position.set(WALL_X, 0, 0);
 
         // Concrete Slabs
@@ -653,6 +698,153 @@
         }
 
         scene.add(wallGroup);
+      }
+
+      function buildMission2GroundZone() {
+        diveZoneGroup = new THREE.Group();
+
+        // 1. Grid of caution chevrons on runway for pull-up zone
+        const zoneGeo = new THREE.PlaneGeometry(16, 12);
+        const zoneMat = new THREE.MeshBasicMaterial({
+          color: 0xf59e0b,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.35,
+        });
+        const zoneMesh = new THREE.Mesh(zoneGeo, zoneMat);
+        zoneMesh.rotation.x = -Math.PI / 2;
+        zoneMesh.position.set(4.0, 0.02, 0.0);
+        diveZoneGroup.add(zoneMesh);
+
+        // 2. Safe Altitude Recovery Threshold Plane at Y = 1.0m (Altitude)
+        const threshGeo = new THREE.PlaneGeometry(16, 12);
+        const threshMat = new THREE.MeshBasicMaterial({
+          color: 0x10b981,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.20,
+        });
+        const threshMesh = new THREE.Mesh(threshGeo, threshMat);
+        threshMesh.rotation.x = -Math.PI / 2;
+        threshMesh.position.set(4.0, 1.0, 0.0);
+        diveZoneGroup.add(threshMesh);
+
+        // 3. Ground Proximity Warning Beacon Lights
+        [-4.5, 4.5].forEach(zPos => {
+          [0.0, 4.0, 8.0, 12.0].forEach(xPos => {
+            const beaconGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.45, 8);
+            const beaconMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: 0.4 });
+            const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+            beacon.position.set(xPos, 0.22, zPos);
+            diveZoneGroup.add(beacon);
+
+            const light = new THREE.PointLight(0xfbbf24, 0.8, 5.0);
+            light.position.set(xPos, 0.50, zPos);
+            diveZoneGroup.add(light);
+          });
+        });
+
+        diveZoneGroup.visible = false;
+        scene.add(diveZoneGroup);
+      }
+
+      function buildMission3SlalomObstacles() {
+        // 1. Cable Group (Hazard A at X = 8.0m, Height Y = 2.5m)
+        cableGroup = new THREE.Group();
+
+        const CABLE_SPAN = 20.0;
+        const CABLE_X = 8.0;
+        const CABLE_HEIGHT = 2.5;
+
+        // Transmission Cable (Thin 2cm wire)
+        const cableGeo = new THREE.CylinderGeometry(0.015, 0.015, CABLE_SPAN, 8);
+        const cableMat = new THREE.MeshStandardMaterial({
+          color: 0x1e293b,
+          metalness: 0.95,
+          roughness: 0.15,
+        });
+        const cableMesh = new THREE.Mesh(cableGeo, cableMat);
+        cableMesh.rotation.x = Math.PI / 2; // Spans across lateral Z axis
+        cableMesh.position.set(CABLE_X, CABLE_HEIGHT, 0);
+        cableMesh.castShadow = true;
+        cableGroup.add(cableMesh);
+
+        // Warning Marker Spheres along cable (High-Vis Aviation Orange)
+        [-5.0, -2.5, 0.0, 2.5, 5.0].forEach(zPos => {
+          const sphereGeo = new THREE.SphereGeometry(0.15, 16, 16);
+          const sphereMat = new THREE.MeshStandardMaterial({
+            color: 0xf97316,
+            roughness: 0.3,
+            metalness: 0.1,
+          });
+          const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+          sphere.position.set(CABLE_X, CABLE_HEIGHT, zPos);
+          sphere.castShadow = true;
+          cableGroup.add(sphere);
+        });
+
+        // Steel Lattice Pylons on both sides
+        [-CABLE_SPAN / 2, CABLE_SPAN / 2].forEach(zPos => {
+          const pylonGeo = new THREE.CylinderGeometry(0.12, 0.40, 6.0, 4);
+          const pylonMat = new THREE.MeshStandardMaterial({
+            color: 0x475569,
+            metalness: 0.85,
+            roughness: 0.3,
+            wireframe: true,
+          });
+          const pylon = new THREE.Mesh(pylonGeo, pylonMat);
+          pylon.position.set(CABLE_X, 3.0, zPos);
+          pylon.castShadow = true;
+          cableGroup.add(pylon);
+        });
+
+        cableGroup.visible = false;
+        scene.add(cableGroup);
+
+        // 2. Dynamic Lateral Intruder Hazard (Hazard C at X = 12.0m)
+        intruderGroup = new THREE.Group();
+        intruderGroup.position.set(12.0, 2.0, -4.0);
+
+        // Intruder Autonomous Transport Unit
+        const bodyGeo = new THREE.BoxGeometry(0.85, 0.50, 1.40);
+        const bodyMat = new THREE.MeshStandardMaterial({
+          color: 0xe11d48, // Ruby Warning Red
+          roughness: 0.35,
+          metalness: 0.7,
+        });
+        const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.castShadow = true;
+        intruderGroup.add(bodyMesh);
+
+        // High-Vis Strobe Light on Intruder
+        const strobeGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.15, 8);
+        const strobeMat = new THREE.MeshBasicMaterial({ color: 0xff0044 });
+        const strobeMesh = new THREE.Mesh(strobeGeo, strobeMat);
+        strobeMesh.position.y = 0.32;
+        intruderGroup.add(strobeMesh);
+
+        const strobeLight = new THREE.PointLight(0xff0044, 2.0, 8.0);
+        strobeLight.position.set(0, 0.45, 0);
+        intruderGroup.add(strobeLight);
+
+        // Twin Sensor Pods
+        [-0.35, 0.35].forEach(xOff => {
+          const podGeo = new THREE.SphereGeometry(0.12, 12, 12);
+          const podMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9 });
+          const pod = new THREE.Mesh(podGeo, podMat);
+          pod.position.set(xOff, 0, 0.65);
+          intruderGroup.add(pod);
+        });
+
+        intruderGroup.visible = false;
+        scene.add(intruderGroup);
+      }
+
+      function updateMissionVisuals(mId) {
+        if (wallGroup) wallGroup.visible = (mId === 1);
+        if (diveZoneGroup) diveZoneGroup.visible = (mId === 2);
+        if (cableGroup) cableGroup.visible = (mId === 3);
+        if (intruderGroup) intruderGroup.visible = (mId === 3);
       }
 
       function buildIndustrialArchitecture() {
@@ -1022,22 +1214,44 @@
 
         droneGroup.position.set(px, pz, py); // In Three.js: X=forward, Y=up(altitude), Z=lateral
 
-        // Dynamic Drone Attitude Tilt
+        // Dynamic Drone Attitude Tilt based on Mission and State
         const vx = fCur.vx;
         const cmd_vz = fCur.cmd_vz;
-        const isVault = fCur.mode === "VerticalEscape";
 
-        // Forward Pitch: Tilt down during cruise (-14 deg); Pitch up sharply during vault (+24 deg)
-        let targetPitch = isVault ? 0.38 : -0.22;
-        droneGroup.rotation.z = -targetPitch; // Three.js pitch around lateral axis
+        if (currentMission === 1) {
+          const isVault = fCur.mode === "VerticalEscape";
+          const targetPitch = isVault ? 0.38 : -0.22;
+          droneGroup.rotation.z = -targetPitch;
+          droneGroup.rotation.x = 0;
+        } else if (currentMission === 2) {
+          const isClimb = fCur.mode.includes("CollectiveClimb") || fCur.cmd_vz > 2.0;
+          // When plunging down: pitch forward/down; when collective climb: pitch up into aggressive climb
+          const targetPitch = isClimb ? 0.48 : -0.38;
+          droneGroup.rotation.z = -targetPitch;
+          droneGroup.rotation.x = 0;
+        } else if (currentMission === 3) {
+          // Bank into the 3.5N crosswind
+          droneGroup.rotation.x = -0.16;
+          const isVault = fCur.mode === "VerticalEscape";
+          const targetPitch = isVault ? 0.28 : -0.15;
+          droneGroup.rotation.z = -targetPitch;
+
+          // Update dynamic crossing intruder position at X=12.0m (v = 3.0 m/s)
+          if (intruderGroup) {
+            const simTime = fCur.frame * 0.010;
+            const intruderZ = -4.0 + 3.0 * simTime;
+            intruderGroup.position.set(12.0, 2.0, intruderZ);
+          }
+        }
 
         // Rotate Propellers at High RPM
+        const rpmMult = (currentMission === 2 && fCur.mode.includes("CollectiveClimb")) ? 1.5 : 1.0;
         rotorMeshes.forEach(r => {
-          r.blade.rotation.y += 0.55 * r.dir;
+          r.blade.rotation.y += 0.55 * r.dir * rpmMult;
         });
 
         // Update Laser Sensor Mesh & Collision Intercepts
-        updateLaserBeams(px, pz, py, isVault);
+        updateLaserBeams(px, pz, py, fCur);
 
         // Update Flight Trajectory Trail
         updateTrajectoryTrail(px, pz, py, fIdx);
@@ -1049,7 +1263,7 @@
         updateHUD(fCur, px, pz, py);
       }
 
-      function updateLaserBeams(droneX, droneAlt, droneY, isVault) {
+      function updateLaserBeams(droneX, droneAlt, droneY, fCur) {
         const count = 48;
         const MAX_RANGE = 7.0;
 
@@ -1068,28 +1282,54 @@
           const dirZ = Math.sin(horizAngle) * Math.cos(elev); // lateral
           const dirY = Math.sin(elev); // vertical
 
-          // Ray-Box Intercept with Wall at WALL_X = 10.0m
           let range = MAX_RANGE;
-          let isWallHit = false;
+          let isHit = false;
 
-          if (dirX > 0.05) {
-            const distToWall = (WALL_X - droneX) / dirX;
-            if (distToWall > 0 && distToWall < MAX_RANGE) {
-              const hitY = droneAlt + dirY * distToWall;
-              const hitZ = droneY + dirZ * distToWall;
-              if (hitY >= 0 && hitY <= WALL_HEIGHT && Math.abs(hitZ) <= WALL_Y_SPAN / 2) {
-                range = distToWall;
-                isWallHit = true;
-
-                // Place impact decal on wall surface
-                ring.position.set(WALL_X - 0.02, hitY, hitZ);
+          if (currentMission === 1) {
+            // Ray-Box Intercept with Wall at WALL_X = 10.0m
+            if (dirX > 0.05) {
+              const distToWall = (WALL_X - droneX) / dirX;
+              if (distToWall > 0 && distToWall < MAX_RANGE) {
+                const hitY = droneAlt + dirY * distToWall;
+                const hitZ = droneY + dirZ * distToWall;
+                if (hitY >= 0 && hitY <= WALL_HEIGHT && Math.abs(hitZ) <= WALL_Y_SPAN / 2) {
+                  range = distToWall;
+                  isHit = true;
+                  ring.position.set(WALL_X - 0.02, hitY, hitZ);
+                  ring.material.opacity = 0.85;
+                  ring.scale.setScalar(1.0 + Math.sin(performance.now() * 0.02) * 0.2);
+                }
+              }
+            }
+          } else if (currentMission === 2) {
+            // Downward beam intercept with ground plane at Y = 0.0m
+            if (dirY < -0.05) {
+              const distToGround = -droneAlt / dirY;
+              if (distToGround > 0 && distToGround < MAX_RANGE) {
+                range = distToGround;
+                isHit = true;
+                ring.position.set(droneX + dirX * range, 0.02, droneY + dirZ * range);
                 ring.material.opacity = 0.85;
                 ring.scale.setScalar(1.0 + Math.sin(performance.now() * 0.02) * 0.2);
               }
             }
+          } else if (currentMission === 3) {
+            // Cable at X=8.0m and Intruder at X=12.0m
+            if (dirX > 0.05) {
+              const distToCable = (8.0 - droneX) / dirX;
+              if (distToCable > 0 && distToCable < MAX_RANGE) {
+                const hitY = droneAlt + dirY * distToCable;
+                if (Math.abs(hitY - 2.5) < 0.35) {
+                  range = distToCable;
+                  isHit = true;
+                  ring.position.set(8.0, 2.5, droneY + dirZ * distToCable);
+                  ring.material.opacity = 0.85;
+                }
+              }
+            }
           }
 
-          if (!isWallHit) {
+          if (!isHit) {
             ring.material.opacity = 0.0;
           }
 
@@ -1103,19 +1343,19 @@
           posAttr.setXYZ(1, endX, endY, endZ);
           posAttr.needsUpdate = true;
 
-          // Color Shift: Clear Cyan -> Warning Ruby Red on Wall Contact
-          if (isWallHit) {
+          // Color Shift: Clear Cyan -> Warning Ruby Red on Obstacle Contact
+          if (isHit) {
             line.material.color.setHex(0xff003c);
             line.material.opacity = 0.75;
           } else {
             line.material.color.setHex(0x00f0ff);
-            line.material.opacity = 0.25;
+            line.material.opacity = 0.20;
           }
         }
       }
 
       function updateTrajectoryTrail(px, pz, py, fIdx) {
-        const count = Math.min(fIdx + 1, 100);
+        const count = Math.min(fIdx + 1, telemetry.length);
         for (let i = 0; i < count; i++) {
           const f = telemetry[i];
           trailPositions[i * 3] = f.x;
@@ -1163,9 +1403,17 @@
           camera.position.set(dPos.x + 0.38, dPos.y + 0.02, dPos.z);
           controls.target.set(dPos.x + 8.0, dPos.y - 0.2, dPos.z);
         } else if (cameraMode === 'wall') {
-          // Ground Observer View near the concrete wall
-          camera.position.set(WALL_X + 2.5, 0.8, -4.5);
-          controls.target.set(dPos.x, dPos.y, dPos.z);
+          // Ground Observer View adapted to current mission
+          if (currentMission === 1) {
+            camera.position.set(WALL_X + 2.5, 0.8, -4.5);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          } else if (currentMission === 2) {
+            camera.position.set(6.0, 0.35, -3.5);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          } else if (currentMission === 3) {
+            camera.position.set(10.0, 1.8, -5.0);
+            controls.target.set(dPos.x, dPos.y, dPos.z);
+          }
         }
         // In 'orbit' mode, user has full mouse OrbitControls free look
       }
@@ -1186,18 +1434,48 @@
         document.getElementById('valSpeed').innerText = `${f.vx.toFixed(2)} m/s (${(f.vx * 3.6).toFixed(1)} km/h)`;
         document.getElementById('valClimb').innerText = `${f.cmd_vz >= 0 ? '+' : ''}${f.cmd_vz.toFixed(2)} m/s`;
         document.getElementById('valLatency').innerText = `${f.latency.toFixed(2)} µs (< 15 µs)`;
-        
-        const distToWall = Math.max(0, WALL_X - px);
-        document.getElementById('valClearance').innerText = `${distToWall.toFixed(2)} m`;
 
-        // Arbiter Mode Pill
         const phaseBadge = document.getElementById('phaseBadge');
-        if (f.mode === "VerticalEscape") {
-          phaseBadge.className = "phase-badge phase-vault";
-          phaseBadge.innerText = "VERTICAL ESCAPE ENGAGED (VAULTING OVER WALL)";
-        } else {
-          phaseBadge.className = "phase-badge phase-cruise";
-          phaseBadge.innerText = "NOMINAL CRUISE (8.0 m/s SPEED)";
+
+        if (currentMission === 1) {
+          const distToWall = Math.max(0, WALL_X - px);
+          document.getElementById('valClearance').innerText = `${distToWall.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 COLLISIONS (SAFE)";
+          document.getElementById('lblClearance').innerText = "CLEARANCE TO WALL:";
+
+          if (f.mode === "VerticalEscape") {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "VERTICAL ESCAPE ENGAGED (VAULTING OVER WALL)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "NOMINAL CRUISE (8.0 m/s SPEED)";
+          }
+        } else if (currentMission === 2) {
+          document.getElementById('valClearance').innerText = `${pz.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 GROUND IMPACTS (CLEAN PULL-UP)";
+          document.getElementById('lblClearance').innerText = "GROUND CLEARANCE:";
+
+          if (f.mode.includes("CollectiveClimb")) {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "COLLECTIVE CLIMB (+6.0 m/s PULL-UP REFLEX)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "STEEP PLUNGE DIVE (-3.5 m/s DESCENT)";
+          }
+        } else if (currentMission === 3) {
+          const intruderZ = -4.0 + 3.0 * (f.frame * 0.010);
+          const distToIntruder = Math.hypot(12.0 - px, intruderZ - py);
+          document.getElementById('valClearance').innerText = `${distToIntruder.toFixed(2)} m`;
+          document.getElementById('valSafety').innerText = "0 SNAGS // DISTURBANCE REJECTED";
+          document.getElementById('lblClearance').innerText = "INTRUDER DISTANCE:";
+
+          if (f.mode === "VerticalEscape") {
+            phaseBadge.className = "phase-badge phase-vault";
+            phaseBadge.innerText = "SLALOM REFLEX (CABLE & INTRUDER AVOIDANCE)";
+          } else {
+            phaseBadge.className = "phase-badge phase-cruise";
+            phaseBadge.innerText = "CROSSWIND REJECTION (3.5N LATERAL OBSERVER)";
+          }
         }
 
         // Coordinates
@@ -1207,9 +1485,47 @@
         // Timeline Slider
         const slider = document.getElementById('timeSlider');
         slider.value = f.frame;
+        const totalF = telemetry.length;
         document.getElementById('timeCurrent').innerText = 
-          `FRAME ${String(f.frame).padStart(3, '0')} / 099 (${(f.frame * 0.010).toFixed(2)}s)`;
+          `FRAME ${String(f.frame).padStart(3, '0')} / ${String(totalF - 1).padStart(3, '0')} (${(f.frame * 0.010).toFixed(2)}s)`;
       }
+
+      // =======================================================================
+      // MULTI-MISSION SELECTOR
+      // =======================================================================
+      window.switchMission = function(missionId) {
+        currentMission = missionId;
+        if (missionId === 1) telemetry = window.HIL_MISSION_1_DATA || [];
+        else if (missionId === 2) telemetry = window.HIL_MISSION_2_DATA || [];
+        else if (missionId === 3) telemetry = window.HIL_MISSION_3_DATA || [];
+
+        currentFrameIdx = 0;
+        isPlaying = true;
+        document.getElementById('btnPlayPause').innerText = "⏸ PAUSE";
+
+        const slider = document.getElementById('timeSlider');
+        slider.max = telemetry.length - 1;
+        slider.value = 0;
+
+        document.querySelectorAll('.mission-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`btnMission${missionId}`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        const titleEl = document.getElementById('missionSubTitle');
+        const labelsEl = document.getElementById('timelineDetailLabel');
+        if (missionId === 1) {
+          titleEl.innerText = "MISSION 1: HIGH-SPEED WALL ABORT // PX4 SITL + GAZEBO HARMONIC";
+          if (labelsEl) labelsEl.innerText = "DISTANCE: 10.0m WALL ENCOUNTER";
+        } else if (missionId === 2) {
+          titleEl.innerText = "MISSION 2: STEEP GROUND DIVE RECOVERY (PLUNGE Vz = -3.5 m/s)";
+          if (labelsEl) labelsEl.innerText = "GROUND DIVE: 0.0m RUNWAY IMPACT THRESHOLD";
+        } else if (missionId === 3) {
+          titleEl.innerText = "MISSION 3: CABLE SLALOM & DYNAMIC MOVING HAZARD PENETRATION";
+          if (labelsEl) labelsEl.innerText = "HAZARDS: OVERHEAD CABLE (X=8.0m) & INTRUDER (X=12.0m, v=3.0 m/s)";
+        }
+
+        updateMissionVisuals(missionId);
+      };
 
       // =======================================================================
       // INTERACTIVE CONTROLS (PLAY/PAUSE/SEEK/SPEED)
